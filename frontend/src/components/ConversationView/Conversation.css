@@ -5,6 +5,7 @@
     margin-left: 30vw;
     overflow: auto;
     position: relative;
+    padding-right: 2vw;
 }
 
 .character-select{
@@ -37,8 +38,10 @@
     padding-bottom: 0.6%;
     padding-right: 0.6%;
     padding-left: 1.8%;
-    position: absolute;
-    right: 1%;
+    /* position: absolute;
+    right: 1%; */
+    float: right;
+    margin-left: 20vw;
     margin-bottom: 3%;
 }
 .comp-response{
