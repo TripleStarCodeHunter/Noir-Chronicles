@@ -1,8 +1,17 @@
 import Conversation from "../components/ConversationView/Conversation";
+import Sidebar from "../components/sidebar/Sidebar";
 
 const Game = ()=>{
     return(
-        <Conversation />
+        <div style={{display:"flex", width:"100vw"}}>
+  <div style={{flexShrink: 0}}>
+    <Sidebar/>
+  </div>
+  <div style={{flexGrow: 1}}>
+    <Conversation/>
+  </div>
+</div>
+
     );
 }
 export default Game

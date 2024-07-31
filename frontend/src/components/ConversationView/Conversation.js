@@ -47,7 +47,7 @@ const Conversation = () => {
           </CDropdownMenu>
         </CDropdown>
         <div className='space-between-prompts' />
-
+        <div style={{display:"flex",flexDirection:"column"}}>
         {prompts.map((prompt, index) => (
           <div key={index}>
             <div className='user-prompt'>
@@ -56,7 +56,7 @@ const Conversation = () => {
             <div className='space-between-prompts' />
           </div>
         ))}
-
+        </div>
         <div className='comp-response'>
           It is your work detective
         </div>

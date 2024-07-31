@@ -27,7 +27,7 @@ const Sidebar = () => {
                 <p>Details about the crime scene will go here...</p>
             </div>
             <div className="notes">
-                <h3>Notes</h3>
+                <h3 style={{textAlign:"center",marginBottom:"3%"}}>Notes</h3>
                 <div className="notes-list">
                     <ul>
                         {notes.map((note, index) => (
