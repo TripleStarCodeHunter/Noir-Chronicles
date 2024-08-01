@@ -2,8 +2,8 @@
     background-color: #ededed;
     height: 100vh;
     width: 70%;
-    overflow: auto;
-    padding-right: 1.3vw;
+    overflow: hidden;
+    /* padding-right: 1.3vw; */
     position: absolute;
     right: 0;
 }
@@ -50,6 +50,7 @@
     height: auto;
 }
 .comp-response{
+    vertical-align: top;
     background-color: #d9d9d9;
     border-radius: 20px;
     height: 15.5vh;
@@ -60,6 +61,7 @@
     position: absolute;
     left:2%;
     margin-top: 3%;
+    float: none;
 }
 
 .space-between-prompts{
@@ -85,3 +87,28 @@
     background-color: purple;
     
 }
+
+.chat-area{
+   width: 100%;
+    height: 80%; /* border: 2px solid black; */
+    overflow-y: auto;
+    padding-right: 1.3vw;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

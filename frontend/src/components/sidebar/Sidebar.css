@@ -1,13 +1,15 @@
 .sidebar {
     width: 30vw;
-    background-color: black;
-    color: #E4DDBB;
+    /* background-color: black;  */
+    /* color: #E4DDBB; */
     height: 100vh; /* Full height */
     /* display: flex; */
     /* flex-direction: column; */
     padding: 10px;
     box-sizing: border-box;
-    
+    /* position: absolute; */
+    left: 0;
+    background-color: transparent;
 }
 
 .buttons {

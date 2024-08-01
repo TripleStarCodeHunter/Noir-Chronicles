@@ -1,6 +1,7 @@
 .App {
-  text-align: center;
-  background-color: purple;
+  display: flex;
+  height: 100vh; /* Full height */
+  background: linear-gradient(90deg, #333333, #ffffff); /* Gradient background for the entire page */
 }
 
 .App-logo {

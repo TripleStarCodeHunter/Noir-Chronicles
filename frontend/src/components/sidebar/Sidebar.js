@@ -40,7 +40,7 @@ const Sidebar = () => {
                         type="text"
                         value={newNote}
                         onChange={(e) => setNewNote(e.target.value)}
-                        placeholder="Add a new note"
+                        placeholder=" Add a new note"
                     />
                     <button onClick={handleAddNote}>Add</button>
                 </div>

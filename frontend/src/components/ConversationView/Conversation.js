@@ -46,6 +46,8 @@ const Conversation = () => {
             </CDropdownItem>
           </CDropdownMenu>
         </CDropdown>
+        <div className='chat-area'>
+          
         <div className='space-between-prompts' />
         <div style={{display:"flex",flexDirection:"column"}}>
         {prompts.map((prompt, index) => (
@@ -57,11 +59,12 @@ const Conversation = () => {
           </div>
         ))}
         </div>
-        <div className='comp-response'>
+        {/* <div className='comp-response'>
           It is your work detective
+        </div> */}
         </div>
-
-        <form onSubmit={handleSubmit}>
+        <div style={{height:"12%",bottom:"0",borderTop:"2px solid black"}}>
+        <form onSubmit={handleSubmit} style={{height:"100%"}}>
           <TextareaAutosize
             placeholder="Enter your prompt here..."
             value={text}
@@ -73,6 +76,7 @@ const Conversation = () => {
             Submit
           </Button>
         </form>
+      </div>
       </div>
     </>
   );
