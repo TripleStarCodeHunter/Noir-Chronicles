@@ -10,7 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState } from 'react';
 import Button from '@mui/joy/Button';
 
-const Conversation = () => {
+const Conversation = (gameSettings) => {
   const [text, setText] = useState('');
   const [selectedItem, setSelectedItem] = useState('Character Select');
   const [prompts, setPrompts] = useState(['Who do you think is the killer?']);
@@ -18,6 +18,9 @@ const Conversation = () => {
   const handleSelect = (item) => {
     setSelectedItem(item);
   };
+
+  console.log(JSON.stringify(gameSettings,null,4))
+  console.log(gameSettings.difficulty)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -63,8 +66,8 @@ const Conversation = () => {
           It is your work detective
         </div> */}
         </div>
-        <div style={{height:"12%",bottom:"0",borderTop:"2px solid black"}}>
-        <form onSubmit={handleSubmit} style={{height:"100%"}}>
+        <div style={{minHeight:"12%",borderTop:"2px solid black",paddingTop:"3%",paddingBottom:"5%"}}>
+        <form onSubmit={handleSubmit} style={{height:"auto"}}>
           <TextareaAutosize
             placeholder="Enter your prompt here..."
             value={text}
