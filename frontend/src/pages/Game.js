@@ -47,9 +47,10 @@ const Game = ()=>{
   const handleSelect = (item) => {
     setDifficulty(item);
   };
-
+  const [begin,setBegin] = useState(false)
 
   const handleSubmit = (item) => {
+    setBegin(true)
     setBlur("0px")
     setOpen(false)
   };
@@ -61,7 +62,7 @@ const Game = ()=>{
           aria-describedby="modal-modal-description"
 
         >
-          <Box sx={style} style={{border:"none",backgroundColor:"#F7E7CE",outline:"none"}}>
+          <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Options
             </Typography>
@@ -76,8 +77,9 @@ const Game = ()=>{
                 value={story}
                 defaultValue="1"
                 onChange={handleChange}
+                
                  >
-                <FormControlLabel value="1" control={<Radio />} label="Story 1" />
+                <FormControlLabel value="1" control={<Radio style={{color:"#385E72"}}/>} label="Story 1" />
                 <FormControlLabel value="2" control={<Radio />} label="Story 2" />
                 <FormControlLabel value="3" control={<Radio />} label="Story 3" />
                 </RadioGroup>
@@ -88,7 +90,7 @@ const Game = ()=>{
               <div style={{display:"flex",justifyContent:"space-between" ,width:"100%",alignItems:"center",marginTop:"3%"}}>
 
               {/* Difficulty Dropdown */}
-                  <CDropdown className='character-select' style={{ height:"100% !important",borderRadius: "2px",border:"2px solid black",marginTop:"0",marginLeft:"0"}} required>
+                  <CDropdown className='character-select' style={{ height:"100% !important",borderRadius: "2px",backgroundColor:"#D9E4EC",marginTop:"0",marginLeft:"0"}} required>
                     <CDropdownToggle color="black" className='dropdown-toggle' >
                       {difficulty}
                     </CDropdownToggle>
@@ -105,7 +107,7 @@ const Game = ()=>{
                     </CDropdownMenu>
                   </CDropdown>
 
-                  <Button type="submit" color="primary" style={{height:"100%",border:"2px solid black",borderRadius:"2px"}}>
+                  <Button type="submit" color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#385E72",color:"white"}}>
                     Begin!
                   </Button>
                   
@@ -120,7 +122,7 @@ const Game = ()=>{
             <Sidebar/>
           </div>
           <div style={{flexGrow: 1}}>
-            <Conversation story={story} difficulty={difficulty}/>
+            <Conversation story={story} difficulty={difficulty} begin={begin}/>
           </div>
         </div>
       </div>

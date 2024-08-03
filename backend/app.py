@@ -48,6 +48,7 @@ history=[
 def index():
     if request.method == 'POST':
         data = request.get_json()
+        
         message = data.get('message')
         print('Received message:', message)
         # sending message

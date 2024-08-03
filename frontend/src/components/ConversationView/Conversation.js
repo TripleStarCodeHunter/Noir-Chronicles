@@ -19,6 +19,7 @@ const Conversation = (gameSettings) => {
   
   const sendMessage = async () => {
     try {
+      console.log(" Message "+text)
       const res = await fetch('http://localhost:5000/', {
         method: 'POST',
         headers: {
@@ -33,18 +34,51 @@ const Conversation = (gameSettings) => {
       console.error('Error sending message:', error);
     }
   };
+  const sendStart = async () => {
+    if(gameSettings!=[]){
+      try {
+        console.log(" Message "+text)
+        const res = await fetch('http://localhost:5000/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: "Start" }),
+        });
 
+        const data = await res.json();
+        setResp(data);
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
+    }
+  };
+  console.log(gameSettings)
+  var start=true
+  useEffect(()=>{
+    console.log(" here ",gameSettings.begin)
+      if(gameSettings.begin && start){
+      console.log("xxx")
+      start=false
+      console.log(JSON.stringify(gameSettings,null,4))
+      console.log(gameSettings.difficulty)    
+      
+      sendStart()
+    }
+
+  },[start, gameSettings.begin ])
+  
   const handleSelect = (item) => {
     setSelectedItem(item);
   };
 
-  console.log(JSON.stringify(gameSettings,null,4))
-  console.log(gameSettings.difficulty)
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (text.trim() !== '') {
       setPrompts((prevPrompts) => [...prevPrompts, text]); // Add the new prompt to the list
+      
       sendMessage();
       setText(''); // Clear the textarea after submission
     }
@@ -54,7 +88,8 @@ const Conversation = (gameSettings) => {
     if (resp) {
       console.log('Scenario from resp:', JSON.stringify(resp,null,4));
       console.log('Scenario from resp:', resp.scenario);
-      setPrompts((prevPrompts) => [...prevPrompts, resp.scenario]);
+      setPrompts((prevPrompts) => [...prevPrompts, resp.response]);
+
     }
   }, [resp]);
 
