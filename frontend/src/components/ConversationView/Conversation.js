@@ -7,13 +7,32 @@ import {
 } from '@coreui/react';
 import '@coreui/coreui/dist/css/coreui.min.css';
 import TextareaAutosize from 'react-textarea-autosize';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import Button from '@mui/joy/Button';
 
 const Conversation = () => {
   const [text, setText] = useState('');
+  const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
-  const [prompts, setPrompts] = useState(['Who do you think is the killer?']);
+  const [prompts, setPrompts] = useState([]);
+
+  
+  const sendMessage = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: text }),
+      });
+
+      const data = await res.json();
+      setResp(data);
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
 
   const handleSelect = (item) => {
     setSelectedItem(item);
@@ -23,9 +42,18 @@ const Conversation = () => {
     event.preventDefault();
     if (text.trim() !== '') {
       setPrompts((prevPrompts) => [...prevPrompts, text]); // Add the new prompt to the list
+      sendMessage();
       setText(''); // Clear the textarea after submission
     }
   };
+
+  useEffect(() => {
+    if (resp) {
+      console.log('Scenario from resp:', JSON.stringify(resp,null,4));
+      console.log('Scenario from resp:', resp.scenario);
+      setPrompts((prevPrompts) => [...prevPrompts, resp.scenario]);
+    }
+  }, [resp]);
 
   return (
     <>
