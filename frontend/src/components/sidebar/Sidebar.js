@@ -3,9 +3,6 @@ import './Sidebar.css';
 
 const Sidebar = () => {
     const [notes, setNotes] = useState([
-        "First note about the crime.",
-        "Second note about the crime.",
-        "Third note about the crime."
     ]);
     const [newNote, setNewNote] = useState('');
 
@@ -24,7 +21,7 @@ const Sidebar = () => {
             </div>
             <div className="crime-scene">
                 <h3>Crime Scene Explanation</h3>
-                <p>Details about the crime scene will go here...</p>
+                <p>hi...</p>
             </div>
             <div className="notes">
                 <h3 style={{textAlign:"center",marginBottom:"3%"}}>Notes</h3>
