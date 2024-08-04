@@ -54,7 +54,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
             </div>
             <div className="crime-scene">
                 <h3>Crime Scene Explanation</h3>
-                <p>{resp?.scenario}</p>
+                <p>{resp?.response}</p>
             </div>
             <div className="notes">
                 <h3 style={{textAlign:"center",marginBottom:"3%"}}>Notes</h3>
