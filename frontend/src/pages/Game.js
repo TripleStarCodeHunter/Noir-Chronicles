@@ -38,7 +38,11 @@ const Game = ()=>{
   // const [text, setText] = React.useState('');
   const [difficulty, setDifficulty] = useState('Medium');
   const [story,setStory] = useState('1');
+  const [query,setQuery] = useState("");
+
   
+
+
   const handleChange = (event) => {
     setStory(event.target.value);
     console.log(story)
@@ -119,10 +123,11 @@ const Game = ()=>{
       
           <div style={{display:"flex", width:"100vw",position:"relative"}} className="App">
           <div style={{flexShrink: 0}}>
-            <Sidebar story={story} difficulty={difficulty} begin={begin}/>
+            <Sidebar gameSettings={[story,difficulty,begin]}onQuery={setQuery}/>
           </div>
           <div style={{flexGrow: 1}}>
-          <Conversation/>
+
+          <Conversation query={query}/>
             
           </div>
         </div>
