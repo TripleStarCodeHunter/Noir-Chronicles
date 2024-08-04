@@ -40,6 +40,7 @@
     color: black;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
     align-items: center;
     /* justify-content: center; */
     padding: 10px;
@@ -78,7 +79,7 @@
     align-items: center;
     position: absolute;
     bottom: 0;
-    width: calc(100% - 20px); /* Adjust width to fit within the sidebar without causing horizontal scroll */
+    width: 95%; /* Adjust width to fit within the sidebar without causing horizontal scroll */
     padding: 10px;
     background-color: #E4DDBB;
     box-sizing: border-box;
