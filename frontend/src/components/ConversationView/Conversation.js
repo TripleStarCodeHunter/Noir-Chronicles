@@ -115,8 +115,8 @@ const Conversation = (query) => {
           It is your work detective
         </div> */}
         </div>
-        <div style={{minHeight:"12%",borderTop:"2px solid black",paddingTop:"3%",paddingBottom:"5%"}}>
-        <form onSubmit={handleSubmit} style={{height:"auto"}}>
+        <div className='user-area' >
+        <form className='frm'onSubmit={handleSubmit} style={{height:"auto"}}>
           <TextareaAutosize
   placeholder={selectedItem === 'Character Select' ? "Please choose a character to talk to..." : "Enter your prompt here..."}  
             value={text}

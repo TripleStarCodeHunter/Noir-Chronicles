@@ -135,3 +135,17 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+  .user-area{
+    minHeight:"12%";
+    borderTop:"2px solid black";
+    paddingTop:"3%";paddingBottom:"5%"
+  }
+
+
+  .frm{
+    height:"auto";
+  }
+
+  
+
