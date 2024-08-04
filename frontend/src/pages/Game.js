@@ -119,10 +119,11 @@ const Game = ()=>{
       
           <div style={{display:"flex", width:"100vw",position:"relative"}} className="App">
           <div style={{flexShrink: 0}}>
-            <Sidebar/>
+            <Sidebar story={story} difficulty={difficulty} begin={begin}/>
           </div>
           <div style={{flexGrow: 1}}>
-            <Conversation story={story} difficulty={difficulty} begin={begin}/>
+          <Conversation/>
+            
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect} from 'react';
 import Button from '@mui/joy/Button';
 
-const Conversation = (gameSettings) => {
+const Conversation = (/*gameSettings*/) => {
   const [text, setText] = useState('');
   const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
@@ -34,39 +34,39 @@ const Conversation = (gameSettings) => {
       console.error('Error sending message:', error);
     }
   };
-  const sendStart = async () => {
-    if(gameSettings!=[]){
-      try {
-        console.log(" Message "+text)
-        const res = await fetch('http://localhost:5000/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ message: "Start" }),
-        });
+  // const sendStart = async () => {
+  //   if(gameSettings!=[]){
+  //     try {
+  //       console.log(" Message "+text)
+  //       const res = await fetch('http://localhost:5000/', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ message: "Start" }),
+  //       });
 
-        const data = await res.json();
-        setResp(data);
-      } catch (error) {
-        console.error('Error sending message:', error);
-      }
-    }
-  };
-  console.log(gameSettings)
-  var start=true
-  useEffect(()=>{
-    console.log(" here ",gameSettings.begin)
-      if(gameSettings.begin && start){
-      console.log("xxx")
-      start=false
-      console.log(JSON.stringify(gameSettings,null,4))
-      console.log(gameSettings.difficulty)    
+  //       const data = await res.json();
+  //       setResp(data);
+  //     } catch (error) {
+  //       console.error('Error sending message:', error);
+  //     }
+  //   }
+  // };
+  // console.log(gameSettings)
+  // var start=true
+  // useEffect(()=>{
+  //   console.log(" here ",gameSettings.begin)
+  //     if(gameSettings.begin && start){
+  //     console.log("xxx")
+  //     start=false
+  //     console.log(JSON.stringify(gameSettings,null,4))
+  //     console.log(gameSettings.difficulty)    
       
-      sendStart()
-    }
+  //     sendStart()
+  //   }
 
-  },[start, gameSettings.begin ])
+  // },[start, gameSettings.begin ])
   
   const handleSelect = (item) => {
     setSelectedItem(item);
