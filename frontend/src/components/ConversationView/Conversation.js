@@ -10,13 +10,17 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect} from 'react';
 import Button from '@mui/joy/Button';
 
-const Conversation = (/*gameSettings*/) => {
+const Conversation = (query) => {
   const [text, setText] = useState('');
   const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
   const [prompts, setPrompts] = useState([]);
 
   
+  const [characterList,setCharacterList] = useState([])
+  
+  useEffect(()=>{setCharacterList(query?.query?.suspects)},[query])
+
   const sendMessage = async () => {
     try {
       console.log(" Message "+text)
@@ -25,7 +29,7 @@ const Conversation = (/*gameSettings*/) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify({ message: selectedItem+" "+text }),
       });
 
       const data = await res.json();
@@ -34,40 +38,7 @@ const Conversation = (/*gameSettings*/) => {
       console.error('Error sending message:', error);
     }
   };
-  // const sendStart = async () => {
-  //   if(gameSettings!=[]){
-  //     try {
-  //       console.log(" Message "+text)
-  //       const res = await fetch('http://localhost:5000/', {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ message: "Start" }),
-  //       });
 
-  //       const data = await res.json();
-  //       setResp(data);
-  //     } catch (error) {
-  //       console.error('Error sending message:', error);
-  //     }
-  //   }
-  // };
-  // console.log(gameSettings)
-  // var start=true
-  // useEffect(()=>{
-  //   console.log(" here ",gameSettings.begin)
-  //     if(gameSettings.begin && start){
-  //     console.log("xxx")
-  //     start=false
-  //     console.log(JSON.stringify(gameSettings,null,4))
-  //     console.log(gameSettings.difficulty)    
-      
-  //     sendStart()
-  //   }
-
-  // },[start, gameSettings.begin ])
-  
   const handleSelect = (item) => {
     setSelectedItem(item);
   };
@@ -77,7 +48,8 @@ const Conversation = (/*gameSettings*/) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (text.trim() !== '') {
-      setPrompts((prevPrompts) => [...prevPrompts, text]); // Add the new prompt to the list
+      const text_json = {writer:"user",message:text}
+      setPrompts((prevPrompts) => [...prevPrompts, text_json]); // Add the new prompt to the list
       
       sendMessage();
       setText(''); // Clear the textarea after submission
@@ -86,10 +58,7 @@ const Conversation = (/*gameSettings*/) => {
 
   useEffect(() => {
     if (resp) {
-      console.log('Scenario from resp:', JSON.stringify(resp,null,4));
-      console.log('Scenario from resp:', resp.scenario);
-      setPrompts((prevPrompts) => [...prevPrompts, resp.response]);
-
+      setPrompts((prevPrompts) => [...prevPrompts, resp]);
     }
   }, [resp]);
 
@@ -101,7 +70,12 @@ const Conversation = (/*gameSettings*/) => {
             {selectedItem}
           </CDropdownToggle>
           <CDropdownMenu className="dropdown-menu">
-            <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Inspector Gearsmith')}>
+          {characterList?.map((character, index) => (
+            <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect(character)}>
+            {character}
+          </CDropdownItem>
+          ))}
+            {/* <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Inspector Gearsmith')}>
               Inspector Gearsmith
             </CDropdownItem>
             <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Lady Lavinya')}>
@@ -109,7 +83,7 @@ const Conversation = (/*gameSettings*/) => {
             </CDropdownItem>
             <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Fidget')}>
               Fidget
-            </CDropdownItem>
+            </CDropdownItem> */}
           </CDropdownMenu>
         </CDropdown>
         <div className='chat-area'>
@@ -117,13 +91,25 @@ const Conversation = (/*gameSettings*/) => {
         <div className='space-between-prompts' />
         <div style={{display:"flex",flexDirection:"column"}}>
         {prompts.map((prompt, index) => (
-          <div key={index}>
-            <div className='user-prompt'>
-              {prompt}
+  <div key={index}>
+        {prompt.writer === "user" ? (
+          <>
+            <div className='user-prompt'> 
+              {prompt.message}
             </div>
             <div className='space-between-prompts' />
+          </>
+        ) : (
+          <>
+          <div className='comp-response'>
+            {/* Replace this with the component you want to display for "gemini" writer */}
+            {prompt.response}
           </div>
-        ))}
+          <div className='space-between-prompts' />
+          </>
+        )}
+      </div>
+    ))}
         </div>
         {/* <div className='comp-response'>
           It is your work detective
@@ -132,11 +118,13 @@ const Conversation = (/*gameSettings*/) => {
         <div className='user-area' >
         <form className='frm'onSubmit={handleSubmit} style={{height:"auto"}}>
           <TextareaAutosize
-            placeholder="Enter your prompt here..."
+  placeholder={selectedItem === 'Character Select' ? "Please choose a character to talk to..." : "Enter your prompt here..."}  
             value={text}
             onChange={(e) => setText(e.target.value)}
             className='prompt-box'
             minRows={1} // Set a minimum number of rows
+            disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
+
           />
           <Button type="submit" color="primary" className='prompt-submit'>
             Submit

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 
-const Sidebar = (gameSettings) => {
+const Sidebar = ({onQuery,gameSettings}) => {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState('');
     const [text, setText] = useState('');
@@ -13,7 +13,7 @@ const Sidebar = (gameSettings) => {
             setNewNote('');
         }
     };
-
+    console.log(gameSettings)
     const sendStart = async () => {
         if(gameSettings!=[]){
           try {
@@ -28,26 +28,23 @@ const Sidebar = (gameSettings) => {
     
             const data = await res.json();
             setResp(data);
+            onQuery(data)
             console.log(data)
           } catch (error) {
             console.error('Error sending message:', error);
           }
         }
       };
-      console.log(gameSettings)
+
       var start=true
       useEffect(()=>{
-        console.log(" here ",gameSettings.begin)
-          if(gameSettings.begin && start){
-          console.log("xxx")
+
+        if(gameSettings[2] && start){
           start=false
-          console.log(JSON.stringify(gameSettings,null,4))
-          console.log(gameSettings.difficulty)    
-          
           sendStart()
         }
     
-      },[start, gameSettings.begin ])
+      },[start, gameSettings[2] ])
 
     return (
         <div className="sidebar">

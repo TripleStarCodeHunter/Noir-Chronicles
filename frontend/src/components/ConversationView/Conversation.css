@@ -48,21 +48,43 @@
     word-wrap: break-word;
     height: auto;
 }
-.comp-response{
+/* .comp-response{
     vertical-align: top;
     background-color: #d9d9d9;
+    height: auto;
+    display: inline-block;
     border-radius: 20px;
-    height: 15.5vh;
-    width: 55%;
-    padding: 1%;
-    padding-left: 1.8%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+    padding-right: 1.5%;
+    padding-left: 1.5%;
     text-align: left;
     position: absolute;
     left:2%;
     margin-top: 3%;
+    word-wrap: break-word;
     float: none;
-}
+    max-width: 65%;
+} */
 
+.comp-response{
+    background-color: #d9d9d9;
+    /* height: 5vh; */
+    /* width: 30%; */
+    border-radius: 20px;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+    padding-right: 1.5%;
+    padding-left: 1.5%;
+    /* position: absolute;
+    right: 1%; */
+    margin-bottom: 3%;
+
+    display: inline-block;
+    max-width: 62%;
+    word-wrap: break-word;
+    height: auto;
+}
 .space-between-prompts{
     height: 5%;
 }
@@ -93,6 +115,7 @@
     height: 80%; /* border: 2px solid black; */
     overflow-y: auto;
     padding-right: 1.3vw;
+    padding-left: 1.3vw;
 }
 ::-webkit-scrollbar {
     width: 10px;
