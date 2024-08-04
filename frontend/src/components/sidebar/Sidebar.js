@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 
-const Sidebar = () => {
-    const [notes, setNotes] = useState([
-    ]);
+const Sidebar = (gameSettings) => {
+    const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState('');
+    const [text, setText] = useState('');
+    const [resp,setResp] = useState(null);
 
     const handleAddNote = () => {
         if (newNote.trim() !== '') {
@@ -12,6 +13,41 @@ const Sidebar = () => {
             setNewNote('');
         }
     };
+
+    const sendStart = async () => {
+        if(gameSettings!=[]){
+          try {
+            console.log(" Message "+text)
+            const res = await fetch('http://localhost:5000/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ message: "Start" }),
+            });
+    
+            const data = await res.json();
+            setResp(data);
+            console.log(data)
+          } catch (error) {
+            console.error('Error sending message:', error);
+          }
+        }
+      };
+      console.log(gameSettings)
+      var start=true
+      useEffect(()=>{
+        console.log(" here ",gameSettings.begin)
+          if(gameSettings.begin && start){
+          console.log("xxx")
+          start=false
+          console.log(JSON.stringify(gameSettings,null,4))
+          console.log(gameSettings.difficulty)    
+          
+          sendStart()
+        }
+    
+      },[start, gameSettings.begin ])
 
     return (
         <div className="sidebar">
@@ -21,7 +57,7 @@ const Sidebar = () => {
             </div>
             <div className="crime-scene">
                 <h3>Crime Scene Explanation</h3>
-                <p>hi...</p>
+                <p>{resp?.scenario}</p>
             </div>
             <div className="notes">
                 <h3 style={{textAlign:"center",marginBottom:"3%"}}>Notes</h3>
