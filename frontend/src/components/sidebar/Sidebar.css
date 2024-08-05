@@ -10,6 +10,8 @@
     position: absolute;
     left: 0;
     background-color: transparent;
+    --cui-sidebar-width: 0px; 
+    --cui-sidebar-zindex: 500;
 }
 
 .buttons {
