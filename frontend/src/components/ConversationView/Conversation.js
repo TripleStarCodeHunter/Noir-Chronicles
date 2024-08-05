@@ -71,7 +71,7 @@ const Conversation = (query) => {
           </CDropdownToggle>
           <CDropdownMenu className="dropdown-menu">
           {characterList?.map((character, index) => (
-            <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect(character)}>
+            <CDropdownItem className="dropdown-item" onClick={() => handleSelect(character)}>
             {character}
           </CDropdownItem>
           ))}
