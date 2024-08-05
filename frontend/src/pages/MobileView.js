@@ -5,7 +5,7 @@ import MenuIcon from '../components/sidebar/MenuIcon';
 import './MobileView.css';
 
 const MobileView = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [color, setColor] = useState('#000000');
 
   useEffect(() => {
