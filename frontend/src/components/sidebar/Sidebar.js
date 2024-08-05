@@ -39,12 +39,12 @@ const Sidebar = ({onQuery,gameSettings}) => {
       var start=true
       useEffect(()=>{
 
-        if(gameSettings[2] && start){
+        if(/*gameSettings[2] &&*/ start){
           start=false
           sendStart()
         }
     
-      },[start, gameSettings[2] ])
+      },[start, /*gameSettings[2]*/ ])
 
     return (
         <div className="sidebar">

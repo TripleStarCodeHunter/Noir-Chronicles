@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={ <Game />} />
+          <Route path="/" element={ <MobileView />} />
         </Routes>
       </div>
     </BrowserRouter>
