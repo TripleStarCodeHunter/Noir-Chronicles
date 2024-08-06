@@ -89,11 +89,12 @@
 }
 .prompt-box{
 
-    width: 93%;
+    width: 82%;
     height: 6%;
+    
     /* margin: auto auto; */
-    /* position: absolute;
-    bottom: 2%; */
+    position: absolute;
+    bottom: 2%;
     background-color: #d9d9d9;
     padding: 1%;
     border-radius: 10px;
@@ -102,11 +103,10 @@
     /* flex: 1; */
 }
 .prompt-submit{
-    /* position: absolute ; */
-    /* bottom: 2% ; */
+    position: absolute ;
     height: auto;
-    /* right: 1% ; */
-    width: 6%;
+    left: 84.5% ;
+    width: 12%;
     /* background-color: purple; */
     
 }
@@ -166,17 +166,25 @@
     padding-left:1.3vw ;
     padding-right: 1.3vw;
     align-items: center;
-    border-top: 2px solid black;
+    /* border-top: 2px solid black; */
     vertical-align:text-top;
     /* margin-left: -1.3vw; */  
   }
 
 
   .frm{
+
+    position: absolute;
+      bottom: 2%;
+      width: 100%;
+      height: 12%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height:"auto";
+    height:12%;
+    margin-top: 3.5%;
+    /* position: absolute ; */
     /* border: 2px solid black; */
   }
   
