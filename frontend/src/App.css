@@ -3,6 +3,10 @@
   height: 100vh; /* Full height */
   background: linear-gradient(90deg, #333333, #ffffff); /* Gradient background for the entire page */
 }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  font-family: "Montserrat" !important;
+}
 
 .App-logo {
   height: 40vmin;

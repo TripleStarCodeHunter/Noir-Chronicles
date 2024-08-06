@@ -18,6 +18,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState } from "react";
 
+import GeminiIcon from'../assets/google-gemini-icon.webp'
 
 const Game = ()=>{
   const [open, setOpen] = React.useState(true);
@@ -31,7 +32,7 @@ const Game = ()=>{
     border: "none",
     boxShadow: 24,
     p: 4,
-    
+    height:"auto"
   };
   const [blur,setBlur]=useState("8px")
   const handleClose = () => setOpen(false);
@@ -67,8 +68,9 @@ const Game = ()=>{
 
         >
           <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Options
+            <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
+              <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Welcome</span> 
+              {/* <hr style={{ borderTop: "8px solid black",color:"black",borderColor:"black !important"}}/> */}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Please choose your settings
@@ -117,13 +119,20 @@ const Game = ()=>{
                   
                 </div>
                 </form>
+                <div style={{width:"100%",textAlign:"center",marginTop:"5%",marginBottom:"-3.8%"}}>
+                  <img src={GeminiIcon} style={{width:"10%",height:"100%"}}/>
+                    &nbsp;&nbsp; 
+                    
+                    Powered by Gemini
+                    
+                </div>
             </Typography>
           </Box>
         </Modal>
       
           <div style={{display:"flex", width:"100vw",position:"relative"}} className="App">
           <div style={{flexShrink: 0}}>
-            <Sidebar gameSettings={[story,difficulty,begin]}onQuery={setQuery}/>
+            <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>
           </div>
           <div style={{flexGrow: 1}}>
 
