@@ -9,6 +9,7 @@ import '@coreui/coreui/dist/css/coreui.min.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect} from 'react';
 import Button from '@mui/joy/Button';
+import {Spinner} from 'react-bootstrap'
 
 const Conversation = (query) => {
   const [text, setText] = useState('');
@@ -149,7 +150,6 @@ const Conversation = (query) => {
   const [dialogues, setDialogues] = useState(new Map());
 
   useEffect(() => {
-    console.log(" Entered here "+selectedItem+" "+text)
     if (resp && selectedItem) {
       setDialogues((prevDialogues) => {
         // Create a copy of the previous dialogues map
@@ -174,11 +174,29 @@ const Conversation = (query) => {
             {selectedItem}
           </CDropdownToggle>
           <CDropdownMenu className="dropdown-menu">
-          {characterList?.map((character, index) => (
+          {/* {characterList?.map((character, index) => (
             <CDropdownItem className="dropdown-item" onClick={() => handleSelect(character)}>
             {character}
           </CDropdownItem>
-          ))}
+          ))} */}
+            {!characterList?.length ? (
+            <CDropdownItem className='dropdown-item' style={{display:"flex",justifyContent:"center"}}>
+            <Spinner animation="border" role="status" size="md">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            </CDropdownItem>
+        ) : (
+          characterList?.map((character, index) => (
+            <CDropdownItem
+              key={index}
+              className="dropdown-item"
+              onClick={() => handleSelect(character)}
+            >
+              {character}
+            </CDropdownItem>
+          ))
+        )}
+          
             {/* <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Inspector Gearsmith')}>
               Inspector Gearsmith
             </CDropdownItem>
