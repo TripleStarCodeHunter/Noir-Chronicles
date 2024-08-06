@@ -46,43 +46,9 @@ const Conversation = (query) => {
     setSelectedItem(item);
   };
 
-  
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (text.trim() !== '') {
-  //     const text_json = {writer:"user",message:text}
-  //     console.log(" entered here "+text+" "+selectedItem)
-  //     setPrompts((prevPrompts) => [...prevPrompts, text_json]); // Add the new prompt to the list
-
-  //     sendMessage();
-  //     setText(''); // Clear the textarea after submission
-  //   }
-  // };
 
   const [characterDict, setCharacterDict] = useState({});
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const currentCharacter = selectedItem
-  //   setCharacterDict(prevDict => {
-  //     // If characterName already exists, append the newText to the existing array
-  //     if (prevDict[selectedItem]) {
-  //       return {
-  //         ...prevDict,
-  //         [currentCharacter]: [...prevDict[currentCharacter], text]
-  //       };
-  //     } else {
-  //       // If characterName doesn't exist, create a new array with newText
-  //       return {
-  //         ...prevDict,
-  //         [currentCharacter]: [text]
-  //       };
-  //     }
-     
-  //   });
-  //   console.log(JSON.stringify(characterDict,null,4))
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,29 +70,6 @@ const Conversation = (query) => {
     console.log(JSON.stringify(characterDict,null,4))
     setText('');
   };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(event)
-  //   setDialogues((prevDialogues) => 
-  //     // const newDialogues = new Map(prevDialogues);
-  //     // if (newDialogues.has(selectedItem)) {
-  //     //   newDialogues.get(selectedItem).push(text);
-  //     // } else {
-  //     //   newDialogues.set(selectedItem, [text]);
-  //     // }
-  //     // return newDialogues;
-  //     [...prevDialogues.get(selectedItem),text]
-  //   );
-  //   console.log(JSON.stringify(dialogues,null,4))
-  //   setText('');
-  // };
-
-  // useEffect(() => {
-  //   if (resp) {
-  //     setPrompts((prevPrompts) => [...prevPrompts, resp]);
-  //   }
-  // }, [resp]);
 
   useEffect(() => {
     if (resp) {
@@ -166,6 +109,14 @@ const Conversation = (query) => {
     }
   }, [resp, selectedItem]);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault(); // Prevent new line in textarea
+      handleSubmit(event); // Call submit function
+    }
+  };
+  
+
   return (
     <>
       <div className='chat-box'>
@@ -174,11 +125,7 @@ const Conversation = (query) => {
             {selectedItem}
           </CDropdownToggle>
           <CDropdownMenu className="dropdown-menu">
-          {/* {characterList?.map((character, index) => (
-            <CDropdownItem className="dropdown-item" onClick={() => handleSelect(character)}>
-            {character}
-          </CDropdownItem>
-          ))} */}
+          
             {!characterList?.length ? (
             <CDropdownItem className='dropdown-item' style={{display:"flex",justifyContent:"center"}}>
             <Spinner animation="border" role="status" size="md">
@@ -191,21 +138,17 @@ const Conversation = (query) => {
               key={index}
               className="dropdown-item"
               onClick={() => handleSelect(character)}
+              style={{ whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "100%" /* or any specific width you prefer */}}
             >
               {character}
             </CDropdownItem>
           ))
         )}
           
-            {/* <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Inspector Gearsmith')}>
-              Inspector Gearsmith
-            </CDropdownItem>
-            <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Lady Lavinya')}>
-              Lady Lavinya
-            </CDropdownItem>
-            <CDropdownItem href="#" className="dropdown-item" onClick={() => handleSelect('Fidget')}>
-              Fidget
-            </CDropdownItem> */}
+          
           </CDropdownMenu>
         </CDropdown>
         <div className='chat-area'>
@@ -224,7 +167,7 @@ const Conversation = (query) => {
         ) : (
           <>
           <div className='comp-response'>
-            {/* Replace this with the component you want to display for "gemini" writer */}
+
             {prompt.response}
           </div>
           <div className='space-between-prompts' />
@@ -233,25 +176,25 @@ const Conversation = (query) => {
       </div>
     ))}
         </div>
-        {/* <div className='comp-response'>
-          It is your work detective
-        </div> */}
+
         </div>
         <div className='user-area' >
-        <form className='frm'onSubmit={handleSubmit} style={{height:"auto"}}>
+        <form className='frm' onSubmit={handleSubmit} style={{height:"auto"}}>
           <TextareaAutosize
-  placeholder={selectedItem === 'Character Select' ? "Please choose a character to talk to..." : "Enter your prompt here..."}  
+            placeholder={selectedItem === 'Character Select' ? "Please choose a character to talk to..." : "Enter your prompt here..."}  
             value={text}
             onChange={(e) => setText(e.target.value)}
             className='prompt-box'
+            // style={{border:"2px solid black"}}
             minRows={1} // Set a minimum number of rows
-            disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
-
+            // disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
+            onKeyDown={handleKeyDown}
           />
           <Button type="submit" color="primary" className='prompt-submit'>
             Submit
           </Button>
         </form>
+        {/* <div style={{position:"absolute",bottom:0,width:"100%",border:"2px solid black"}}></div> */}
       </div>
       </div>
     </>

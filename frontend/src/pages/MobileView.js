@@ -138,10 +138,10 @@ const style = {
             </Typography>
           </Box>
         </Modal>
-      {isSidebarOpen && <Sidebar />}
+      {isSidebarOpen && <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>}
       <div className="content-container">
         <MenuIcon style={{ color: color }} toggleSidebar={toggleSidebar} />
-        <Conversation />
+        <Conversation query={query}/>
       </div>
     </div>
   );

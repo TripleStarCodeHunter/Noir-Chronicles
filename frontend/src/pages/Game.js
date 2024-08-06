@@ -68,8 +68,9 @@ const Game = ()=>{
 
         >
           <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Welcome 
+            <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
+              <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Welcome</span> 
+              {/* <hr style={{ borderTop: "8px solid black",color:"black",borderColor:"black !important"}}/> */}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Please choose your settings
@@ -120,7 +121,10 @@ const Game = ()=>{
                 </form>
                 <div style={{width:"100%",textAlign:"center",marginTop:"5%",marginBottom:"-3.8%"}}>
                   <img src={GeminiIcon} style={{width:"10%",height:"100%"}}/>
-                    &nbsp;&nbsp;Powered by Gemini
+                    &nbsp;&nbsp; 
+                    
+                    Powered by Gemini
+                    
                 </div>
             </Typography>
           </Box>

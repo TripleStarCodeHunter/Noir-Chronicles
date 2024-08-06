@@ -6,4 +6,20 @@
     z-index: 2;      
     /* filter:blur(6px) */
  }
+
+ .gradient-text-container {
+    background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff);
+    background-size: 400%;
+    animation: gradient-animation 5s ease infinite;
+  }
+  
+  .gradient-text {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Other necessary styles for text */
+    z-index: 1; /* Ensure text is above gradient */
+    color: black; /* Or any desired text color */
+  }
+  
    
