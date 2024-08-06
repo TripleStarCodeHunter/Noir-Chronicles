@@ -52,6 +52,7 @@ const Conversation = (query) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(text.trim()==='')return;
     const characterName = selectedItem
     setCharacterDict(prevDict => {
       if (prevDict[characterName]) {
@@ -187,7 +188,7 @@ const Conversation = (query) => {
             className='prompt-box'
             // style={{border:"2px solid black"}}
             minRows={1} // Set a minimum number of rows
-            // disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
+            disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
             onKeyDown={handleKeyDown}
           />
           <Button type="submit" color="primary" className='prompt-submit'>
