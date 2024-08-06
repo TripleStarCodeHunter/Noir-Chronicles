@@ -1,4 +1,5 @@
-from flask import Flask,request,jsonify
+from flask import Flask, request, jsonify, EventSource
+
 import json
 from flask_cors import CORS, cross_origin
 
@@ -24,7 +25,7 @@ generation_config = {
 }
 
 model = genai.GenerativeModel(
-  model_name="gemini-1.5-pro",
+  model_name="gemini-1.5-flash",
   generation_config=generation_config,
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
@@ -35,6 +36,24 @@ chat_session = model.start_chat(
   history=[
   ]
 )
+
+
+# @app.route("/", methods=['POST'])
+# def index():
+#     if request.method == 'POST':
+#         data = request.get_json()
+#         message = data.get('message')
+#         print('Received message:', message)
+
+#         def generate_chunks():
+#             response = model.generate_content_stream(message)
+#             for chunk in response:
+#                 yield f"data: {chunk.text}\n\n"
+
+#         # Use EventSource to stream response chunks
+#         return EventSource(generate_chunks())
+#     else:
+#         return("No msg received")
 
 
 @app.route("/", methods=['POST'])
