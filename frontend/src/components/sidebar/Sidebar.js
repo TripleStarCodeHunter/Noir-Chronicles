@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 
+
 const Sidebar = ({onQuery,gameSettings}) => {
     const [notes, setNotes] = useState([]);
     const [newNote, setNewNote] = useState('');
@@ -46,10 +47,8 @@ const Sidebar = ({onQuery,gameSettings}) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: "restart" }),
           });
     
-          // const data = await res.json();
           sendStart()
         } catch (error) {
           console.error('Error sending message:', error);

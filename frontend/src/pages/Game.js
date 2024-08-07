@@ -17,7 +17,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState } from "react";
-
 import GeminiIcon from'../assets/google-gemini-icon.webp'
 
 const Game = ()=>{
@@ -28,21 +27,15 @@ const Game = ()=>{
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    // bgcolor: 'background.paper',
     border: "none",
     boxShadow: 24,
     p: 4,
     height:"auto"
   };
   const [blur,setBlur]=useState("8px")
-  const handleClose = () => setOpen(false);
-  // const [text, setText] = React.useState('');
   const [difficulty, setDifficulty] = useState('Easy');
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
-
-  
-
 
   const handleChange = (event) => {
     setStory(event.target.value);
@@ -60,6 +53,7 @@ const Game = ()=>{
     setOpen(false)
   };
     return(
+      
       <div className="initial" style={{filter:`blur(${blur})`}}>
         <Modal
           open={open}
@@ -141,6 +135,7 @@ const Game = ()=>{
           </div>
         </div>
       </div>
+      
 
     );
 }
