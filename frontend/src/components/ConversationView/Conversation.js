@@ -46,7 +46,11 @@ const Conversation = (query) => {
     setSelectedItem(item);
   };
 
-
+  useEffect(()=>{
+    if(localStorage.getItem("gemini-detective-game-convo")){
+      setCharacterDict(localStorage.getItem("gemini-detective-game-convo"))
+    }
+  },[])
   const [characterDict, setCharacterDict] = useState({});
 
 
@@ -88,6 +92,8 @@ const Conversation = (query) => {
           };
         }
       });
+
+      localStorage.setItem("gemini-detective-game-convo",characterDict)
     }
   }, [resp]);
 

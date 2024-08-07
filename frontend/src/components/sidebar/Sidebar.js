@@ -13,6 +13,15 @@ const Sidebar = ({onQuery,gameSettings}) => {
             setNewNote('');
         }
     };
+
+    useEffect(()=>{
+      const stored_history=localStorage.getItem("gemini-detective-game");
+      // console.log(" heheheh ",JSON.stringify(stored_history,null,4))
+      if(localStorage.getItem("gemini-detective-game-scenario")){
+        console.log(" entered here ")
+        setResp(localStorage.getItem("gemini-detective-game-scenario"))
+      }
+    },[])
     console.log(gameSettings)
     const sendStart = async () => {
         if(gameSettings!=[]){
@@ -29,6 +38,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
             const data = await res.json();
             setResp(data);
             onQuery(data)
+            localStorage.setItem("gemini-detective-game-scenario")
             console.log(data)
           } catch (error) {
             console.error('Error sending message:', error);

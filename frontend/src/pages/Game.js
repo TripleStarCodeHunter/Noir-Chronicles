@@ -16,7 +16,7 @@ import '@coreui/coreui/dist/css/coreui.min.css';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import GeminiIcon from'../assets/google-gemini-icon.webp'
 
@@ -42,7 +42,15 @@ const Game = ()=>{
   const [query,setQuery] = useState("");
 
   
+  const [chatHistory,setChatHistory] = useState([])
 
+  useEffect(()=>{
+    if(localStorage.getItem("gemini-detective-game-convo")){
+      setChatHistory(localStorage.getItem("gemini-detective-game-convo"))
+      setBlur("0px")
+    }
+    console.log("  xxxxx ",chatHistory)
+  },[])
 
   const handleChange = (event) => {
     setStory(event.target.value);
@@ -61,7 +69,7 @@ const Game = ()=>{
   };
     return(
       <div className="initial" style={{filter:`blur(${blur})`}}>
-        <Modal
+      { chatHistory?.length==0 && <Modal
           open={open}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -129,7 +137,7 @@ const Game = ()=>{
             </Typography>
           </Box>
         </Modal>
-      
+        }
           <div style={{display:"flex", width:"100vw",position:"relative"}} className="App">
           <div style={{flexShrink: 0}}>
             <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>
