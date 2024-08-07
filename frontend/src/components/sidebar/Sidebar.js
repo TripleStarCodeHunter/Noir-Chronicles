@@ -16,7 +16,17 @@ const Sidebar = ({onQuery,gameSettings}) => {
             setNewNote('');
         }
     };
-    console.log(gameSettings)
+
+    useEffect(()=>{
+      // const stored_history=localStorage.getItem("gemini-detective-game-scenario");
+      // console.log(" heheheh ",stored_history,null,4)
+      console.log(" heheheh ",JSON.parse(localStorage.getItem("gemini-detective-game-scenario")))
+      if(localStorage.getItem("gemini-detective-game-scenario")){
+        console.log(" entered here ")
+        setResp(JSON.parse(localStorage.getItem("gemini-detective-game-scenario")))
+      }
+    },[])
+    // console.log(gameSettings)
     const sendStart = async () => {
         if(gameSettings!=[]){
           try {
@@ -32,6 +42,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
             const data = await res.json();
             setResp(data);
             onQuery(data)
+            localStorage.setItem("gemini-detective-game-scenario",JSON.stringify(data))
             console.log(data)
           } catch (error) {
             console.error('Error sending message:', error);
@@ -48,7 +59,12 @@ const Sidebar = ({onQuery,gameSettings}) => {
               'Content-Type': 'application/json',
             },
           });
-    
+          localStorage.removeItem("gemini-detective-game-scenario")
+          localStorage.removeItem("gemini-detective-game-convo")
+          window.location.reload();
+
+
+          // const data = await res.json();
           sendStart()
         } catch (error) {
           console.error('Error sending message:', error);
