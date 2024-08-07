@@ -46,10 +46,9 @@ const Game = ()=>{
 
   useEffect(()=>{
     if(localStorage.getItem("gemini-detective-game-convo")){
-      setChatHistory(localStorage.getItem("gemini-detective-game-convo"))
+      setChatHistory(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
       setBlur("0px")
     }
-    console.log("  xxxxx ",chatHistory)
   },[])
 
   const handleChange = (event) => {

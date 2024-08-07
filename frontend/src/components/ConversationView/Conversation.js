@@ -15,14 +15,16 @@ const Conversation = (query) => {
   const [text, setText] = useState('');
   const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
-  const [prompts, setPrompts] = useState([]);
-
-  const [prompts2,setPrompts2] = useState(new Map());
 
   
   const [characterList,setCharacterList] = useState([])
   
-  useEffect(()=>{setCharacterList(query?.query?.suspects)},[query])
+  useEffect(()=>{
+    console.log(" query ",query)
+    if(query.query!=''){
+    setCharacterList(query?.query?.suspects)
+    console.log(JSON.stringify(characterList,null,4))}
+  },[query])
 
   const sendMessage = async () => {
     try {
@@ -37,6 +39,7 @@ const Conversation = (query) => {
 
       const data = await res.json();
       setResp(data);
+      
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -47,11 +50,20 @@ const Conversation = (query) => {
   };
 
   useEffect(()=>{
-    if(localStorage.getItem("gemini-detective-game-convo")){
-      setCharacterDict(localStorage.getItem("gemini-detective-game-convo"))
+    console.log(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+    if(JSON.parse(localStorage.getItem("gemini-detective-game-scenario"))!=null){
+      console.log("Entered here")
+      setCharacterDict(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+      // const character_list = JSON.parse(localStorage.getItem("gemini-detective-game-scenario")).suspects;
+      
+      setCharacterList(JSON.parse(localStorage.getItem("gemini-detective-game-scenario")).suspects)
     }
   },[])
-  const [characterDict, setCharacterDict] = useState({});
+
+  const [characterDict, setCharacterDict] = useState(() => {
+    const savedData = localStorage.getItem("gemini-detective-game-convo");
+    return savedData ? JSON.parse(savedData) : [];
+  });
 
 
   const handleSubmit = (e) => {
@@ -91,30 +103,17 @@ const Conversation = (query) => {
             [selectedCharacter]: [resp]
           };
         }
+        
       });
 
-      localStorage.setItem("gemini-detective-game-convo",characterDict)
+      
     }
   }, [resp]);
 
-  const [dialogues, setDialogues] = useState(new Map());
-
-  useEffect(() => {
-    if (resp && selectedItem) {
-      setDialogues((prevDialogues) => {
-        // Create a copy of the previous dialogues map
-        const updatedDialogues = new Map(prevDialogues);
-
-        // Get the existing dialogues for the character or initialize an empty array
-        const characterDialogues = updatedDialogues.get(selectedItem) || [];
-
-        // Add the new response to the character's dialogues
-        updatedDialogues.set(selectedItem, [...characterDialogues, resp]);
-
-        return updatedDialogues;
-      });
-    }
-  }, [resp, selectedItem]);
+  useEffect(()=>{
+      localStorage.setItem("gemini-detective-game-convo",JSON.stringify(characterDict))
+      console.log(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+  },[characterDict])
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -122,11 +121,11 @@ const Conversation = (query) => {
       handleSubmit(event); // Call submit function
     }
   };
-  
 
   return (
     <>
       <div className='chat-box'>
+        {console.log(characterList)}
         <CDropdown className='character-select' style={{ borderRadius: "1000px" }}>
           <CDropdownToggle color="white" className='dropdown-toggle'>
             {selectedItem}
@@ -140,7 +139,9 @@ const Conversation = (query) => {
             </Spinner>
             </CDropdownItem>
         ) : (
+          
           characterList?.map((character, index) => (
+      
             <CDropdownItem
               key={index}
               className="dropdown-item"
@@ -152,8 +153,11 @@ const Conversation = (query) => {
             >
               {character}
             </CDropdownItem>
+            
           ))
-        )}
+        )
+
+        }
           
           
           </CDropdownMenu>
