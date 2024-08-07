@@ -9,12 +9,24 @@ import '@coreui/coreui/dist/css/coreui.min.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect} from 'react';
 import Button from '@mui/joy/Button';
-import {Spinner} from 'react-bootstrap'
+import {Spinner} from 'react-bootstrap';
+import Confetti from 'react-confetti';
 
 const Conversation = (query) => {
   const [text, setText] = useState('');
   const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
+  const [prompts, setPrompts] = useState([]);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+  const handleShowConfetti = () => {
+    setShowConfetti(true);
+    console.log("Showing confetti")
+    setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 5 seconds
+  };
+
+
+  const [prompts2,setPrompts2] = useState(new Map());
 
   
   const [characterList,setCharacterList] = useState([])
@@ -38,6 +50,11 @@ const Conversation = (query) => {
       });
 
       const data = await res.json();
+      console.log(data)
+      if (data.win==1)
+      {
+        handleShowConfetti()
+      }
       setResp(data);
       
     } catch (error) {
@@ -124,6 +141,7 @@ const Conversation = (query) => {
 
   return (
     <>
+    {showConfetti && <Confetti style={{margin:"auto auto", width:"100vw",height:"100vh"}}/>}
       <div className='chat-box'>
         {console.log(characterList)}
         <CDropdown className='character-select' style={{ borderRadius: "1000px" }}>
