@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 
 const Sidebar = ({onQuery,gameSettings}) => {
@@ -23,7 +25,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({ message: "Start" }),
+              body: JSON.stringify({ message: "Start Game Difficulty: " +gameSettings[1] }),
             });
     
             const data = await res.json();
@@ -33,6 +35,24 @@ const Sidebar = ({onQuery,gameSettings}) => {
           } catch (error) {
             console.error('Error sending message:', error);
           }
+        }
+      };
+
+      const sendRestart = async () => {
+        try {
+          console.log(" Message "+text)
+          const res = await fetch('http://localhost:5000/restart', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: "restart" }),
+          });
+    
+          // const data = await res.json();
+          sendStart()
+        } catch (error) {
+          console.error('Error sending message:', error);
         }
       };
 
@@ -51,6 +71,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
             <div className="buttons">
                 <button>Get Hint</button>
                 <button>Give Up</button>
+                <button className='restart' style={{width:"15%"}}  onClick={sendRestart} ><FontAwesomeIcon icon={faRedo} /></button>
             </div>
             <div className="crime-scene">
                 <h3>Crime Scene Explanation</h3>

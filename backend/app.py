@@ -64,14 +64,24 @@ def index():
         message = data.get('message')
         print('Received message:', message)
         # sending message
-        response = model.generate_content(message)
+        # resp = chat_session.send_message(message)
+        # print(resp)
+        response = chat_session.send_message(message)
         y = (response.text)
+        # print(chat_session.history)
         print(y)
         return y
     else:
         return("No msg received")
-    # return jsonify({'message': 'Hello from Flask!'})
     
+    
+@app.route("/restart", methods=['POST'])
+def restart():
+  chat_session = model.start_chat(
+  history=[
+  ]
+  )
+  return ("restart")
     
 # @app.route('/send')
 # def send_message(message):

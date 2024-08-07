@@ -27,7 +27,7 @@ const MobileView = () => {
   const [open, setOpen] = React.useState(true);
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [difficulty, setDifficulty] = useState('Easy');
 
 
 
