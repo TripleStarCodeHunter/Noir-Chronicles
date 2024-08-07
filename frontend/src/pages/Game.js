@@ -19,6 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState,useEffect } from "react";
 
 import GeminiIcon from'../assets/google-gemini-icon.webp'
+import Congrats from "../components/CongratsPopUp/Congrats";
 
 const Game = ()=>{
   const [open, setOpen] = React.useState(true);
@@ -68,6 +69,7 @@ const Game = ()=>{
   };
     return(
       <div className="initial" style={{filter:`blur(${blur})`}}>
+        <Congrats/>
       { chatHistory?.length==0 && <Modal
           open={open}
           aria-labelledby="modal-modal-title"

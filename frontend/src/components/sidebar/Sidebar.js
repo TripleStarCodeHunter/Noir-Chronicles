@@ -62,8 +62,6 @@ const Sidebar = ({onQuery,gameSettings}) => {
           localStorage.removeItem("gemini-detective-game-scenario")
           localStorage.removeItem("gemini-detective-game-convo")
           window.location.reload();
-
-
           // const data = await res.json();
           sendStart()
         } catch (error) {

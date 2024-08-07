@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import Game from './pages/Game';
 import MobileView from './pages/MobileView'; // Ensure correct capitalization
 import './App.css';
+import Congrats from './components/CongratsPopUp/Congrats';
 
 function App() {
   // const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -27,8 +28,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element= {isDesktop ? <Game /> : <MobileView />}
- />
+          <Route path="/" element= {isDesktop ? <Game /> : <MobileView />}/>
+          {/* <Route path="/congrats" element= {<Congrats/>} /> */}
         </Routes>
       </div>
     </BrowserRouter>
