@@ -18,6 +18,9 @@
     display: flex;
     justify-content: center;
 }
+.restart{
+    width:8%;
+}
 
 .buttons button {
     background-color: #E4DDBB;

@@ -37,7 +37,7 @@ const Game = ()=>{
   const [blur,setBlur]=useState("8px")
   const handleClose = () => setOpen(false);
   // const [text, setText] = React.useState('');
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [difficulty, setDifficulty] = useState('Easy');
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
 
