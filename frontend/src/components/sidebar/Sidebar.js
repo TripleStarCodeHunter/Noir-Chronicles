@@ -65,7 +65,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
 
 
           // const data = await res.json();
-          sendStart()
+          // sendStart()
         } catch (error) {
           console.error('Error sending message:', error);
         }
