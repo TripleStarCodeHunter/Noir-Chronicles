@@ -115,7 +115,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
               speed={3} // Faster animation
               width="100%" // Adjust width if needed
               height="100%" // Adjust height if needed
-              viewBox="0 0 400 160"
+              viewBox="0 0 400 50%"
               backgroundColor="#b3b3b3" // Darker grayish background
               foregroundColor="#999999" // Slightly more grayish foreground
             >
