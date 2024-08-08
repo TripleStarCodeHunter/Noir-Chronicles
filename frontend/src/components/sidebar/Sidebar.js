@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 import GiveUp from '../GiveUp/GiveUp';
+import GetHint from '../GetHint/GetHint';
 
 
-const Sidebar = ({onQuery,gameSettings}) => {
+
+const Sidebar = ({onQuery,gameSettings,availableActions}) => {
   const [notes, setNotes] = useState(() => {
     // Retrieve and parse "gemini-detective-game-convo" from localStorage
     const convo = JSON.parse(localStorage.getItem("gemini-detective-game-convo")) || {};
@@ -27,6 +29,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
     const [text, setText] = useState('');
     const [resp,setResp] = useState(null);
     const [showGiveUp,setShowGiveUp] = useState(false)
+    const [showHint,setShowHint] = useState(false)
 
     const handleAddNote = () => {
         if (newNote.trim() !== '') {
@@ -39,7 +42,12 @@ const Sidebar = ({onQuery,gameSettings}) => {
     useEffect(()=>{
       // const stored_history=localStorage.getItem("gemini-detective-game-scenario");
       // console.log(" heheheh ",stored_history,null,4)
+      const convo = JSON.parse(localStorage.getItem("gemini-detective-game-convo")) || {};
       console.log(" heheheh ",JSON.parse(localStorage.getItem("gemini-detective-game-notes")))
+      if(Object.keys(convo).length==0){
+        console.log(" in remove item")
+        localStorage.removeItem("gemini-detective-game-scenario")
+      }
       if(localStorage.getItem("gemini-detective-game-scenario")){
         console.log(" entered here ")
         setResp(JSON.parse(localStorage.getItem("gemini-detective-game-scenario")))
@@ -127,10 +135,11 @@ const Sidebar = ({onQuery,gameSettings}) => {
 
     return (
       <div style={{display:"flex"}}>
+        {showHint && <GetHint showHint={showHint} setShowHint={setShowHint} availableActions={availableActions}/>}
         {showGiveUp && <GiveUp showGiveUp={showGiveUp}/>}
         <div className="sidebar">
             <div className="buttons">
-                <button>Get Hint</button>
+                <button onClick={()=>{setShowHint(true)}}>Get Hint</button>
                 <button onClick={()=>{setShowGiveUp(true)}}>Give Up</button>
                 <button className='restart' style={{width:"15%"}}  onClick={sendRestart} ><FontAwesomeIcon icon={faRedo} /></button>
             </div>

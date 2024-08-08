@@ -28,6 +28,7 @@ const MobileView = () => {
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
   const [difficulty, setDifficulty] = useState('Easy');
+  const [availableActions, setAvailableActions] = useState([]); // New state for available actions
 
 
 
@@ -147,11 +148,11 @@ const style = {
             </Typography>
           </Box>
         </Modal>}
-      {isSidebarOpen && <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>}
+      {isSidebarOpen &&  <Sidebar gameSettings={[story, difficulty, begin]} onQuery={setQuery} availableActions={availableActions} />}
       <div className="content-container">
         <MenuIcon style={{ color: color }} toggleSidebar={toggleSidebar} />
-        <Conversation query={query}/>
-      </div>
+        <Conversation query={query} onUpdateActions={setAvailableActions} />
+        </div>
     </div>
   );
 };
