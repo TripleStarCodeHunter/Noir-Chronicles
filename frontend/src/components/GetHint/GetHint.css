@@ -4,9 +4,11 @@
     height: 100vh;
     position:relative;
     z-index: 10;      
-    /* border: 20px solid green; */
+    /* border: 20px solid #c0c0c0; */
     /* filter:blur(6px) */
  }
+
+
 
  .give-up-box{
     border:none;
