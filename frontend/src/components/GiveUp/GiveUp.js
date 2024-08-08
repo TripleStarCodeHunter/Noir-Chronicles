@@ -10,7 +10,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    // width: 400,
     border: "none",
     boxShadow: 24,
     p: 4,
@@ -35,7 +35,7 @@ const GiveUp = ({showGiveUp})=>{
         } catch (error) {
           console.error('Error sending message:', error);
         }
-        sendRestart()
+        // sendRestart()
       };
 
       useEffect(()=>{
@@ -59,6 +59,8 @@ const GiveUp = ({showGiveUp})=>{
       // {
       //   handleShowConfetti()
       // }
+      localStorage.removeItem("gemini-detective-game-scenario")
+      localStorage.removeItem("gemini-detective-game-convo")
       setResp(data.response);
       
     } catch (error) {
@@ -75,10 +77,10 @@ const GiveUp = ({showGiveUp})=>{
           aria-describedby="modal-modal-description"
 
         >
-          <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none",width:"38%"}}>
+          <Box sx={style} style={{backgroundColor:"#B7CFDC"}} className="give-up-box">
             <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
               <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Solution</span> 
-
+              <hr style={{color:"black",width:"70%",margin:"auto"}} />
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               {resp}
@@ -88,7 +90,7 @@ const GiveUp = ({showGiveUp})=>{
               <div style={{width:"100%",marginTop:"5%"}}>
 
 
-                  <Button onClick={sendRestart} color="primary" style={{marginTop:"2%",height:"100%",borderRadius:"2px",backgroundColor:"#385E72",color:"white",float:"right"}}>
+                  <Button onClick={sendRestart} color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#385E72",color:"white",float:"right"}}>
                         Restart
                   </Button>
                   

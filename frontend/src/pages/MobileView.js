@@ -65,6 +65,8 @@ const style = {
   // const [text, setText] = React.useState('');
   // const [difficulty, setDifficulty] = useState('Medium');
   const [begin,setBegin] = useState(false)
+  const [chatHistory,setChatHistory] = useState([])
+
 
   const handleSubmit = (item) => {
     setBegin(true)
@@ -72,9 +74,16 @@ const style = {
     setOpen(false)
   };
 
+  useEffect(()=>{
+    if(localStorage.getItem("gemini-detective-game-convo")){
+      setChatHistory(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+      setBlur("0px")
+    }
+  },[])
+
   return (
     <div className="mobile-view">
-      <Modal
+      {chatHistory?.length==0 && <Modal
           open={open}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
@@ -137,7 +146,7 @@ const style = {
                 </div>
             </Typography>
           </Box>
-        </Modal>
+        </Modal>}
       {isSidebarOpen && <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>}
       <div className="content-container">
         <MenuIcon style={{ color: color }} toggleSidebar={toggleSidebar} />

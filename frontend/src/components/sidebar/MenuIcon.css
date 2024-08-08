@@ -1,4 +1,8 @@
 .menu-icon {
+  display: fixed;
+  position:absolute;
+  top:0;
+  left: 0;
   cursor: pointer;
   font-size: 30px;
   padding: 10px;

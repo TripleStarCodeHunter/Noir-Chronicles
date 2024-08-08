@@ -184,7 +184,7 @@ const Conversation = (query) => {
           
         <div className='space-between-prompts' />
         <div style={{display:"flex",flexDirection:"column"}}>
-          {console.log(selectedItem)}
+          {/* {console.log(selectedItem)} */}
         {characterDict[selectedItem]?.map((prompt, index) => (
   <div key={index}>
         {prompt.writer === "user" ? (
