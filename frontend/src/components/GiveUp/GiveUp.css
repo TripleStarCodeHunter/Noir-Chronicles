@@ -1,0 +1,9 @@
+.give-up{
+    /* background-color: rgba(0,0,0,0.2); */
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+    z-index: 2000;      
+    /* border: 20px solid green; */
+    /* filter:blur(6px) */
+ }

@@ -67,7 +67,7 @@ const Game = ()=>{
     return(
       
       <div className="initial" style={{filter:`blur(${blur})`}}>
-        <Congrats/>
+        {/* <Congrats/> */}
       { chatHistory?.length==0 && <Modal
           open={open}
           aria-labelledby="modal-modal-title"

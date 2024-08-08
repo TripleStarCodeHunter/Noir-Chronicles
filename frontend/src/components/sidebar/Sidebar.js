@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
+import GiveUp from '../GiveUp/GiveUp';
 
 
 const Sidebar = ({onQuery,gameSettings}) => {
@@ -9,6 +10,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
     const [newNote, setNewNote] = useState('');
     const [text, setText] = useState('');
     const [resp,setResp] = useState(null);
+    const [showGiveUp,setShowGiveUp] = useState(false)
 
     const handleAddNote = () => {
         if (newNote.trim() !== '') {
@@ -16,6 +18,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
             setNewNote('');
         }
     };
+
 
     useEffect(()=>{
       // const stored_history=localStorage.getItem("gemini-detective-game-scenario");
@@ -80,10 +83,12 @@ const Sidebar = ({onQuery,gameSettings}) => {
       },[start, gameSettings[2] ])
 
     return (
+      <div style={{display:"flex"}}>
+        {showGiveUp && <GiveUp showGiveUp={showGiveUp}/>}
         <div className="sidebar">
             <div className="buttons">
                 <button>Get Hint</button>
-                <button>Give Up</button>
+                <button onClick={()=>{setShowGiveUp(true)}}>Give Up</button>
                 <button className='restart' style={{width:"15%"}}  onClick={sendRestart} ><FontAwesomeIcon icon={faRedo} /></button>
             </div>
             <div className="crime-scene">
@@ -109,6 +114,8 @@ const Sidebar = ({onQuery,gameSettings}) => {
                     <button onClick={handleAddNote}>Add</button>
                 </div>
             </div>
+        </div>
+
         </div>
     );
 };

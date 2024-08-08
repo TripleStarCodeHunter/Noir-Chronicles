@@ -143,7 +143,7 @@ const Conversation = (query) => {
     <>
     {showConfetti && <Confetti style={{margin:"auto auto", width:"100vw",height:"100vh"}}/>}
       <div className='chat-box'>
-        {console.log(characterList)}
+        {/* {console.log(characterList)} */}
         <CDropdown className='character-select' style={{ borderRadius: "1000px" }}>
           <CDropdownToggle color="white" className='dropdown-toggle'>
             {selectedItem}
@@ -184,6 +184,7 @@ const Conversation = (query) => {
           
         <div className='space-between-prompts' />
         <div style={{display:"flex",flexDirection:"column"}}>
+          {console.log(selectedItem)}
         {characterDict[selectedItem]?.map((prompt, index) => (
   <div key={index}>
         {prompt.writer === "user" ? (
