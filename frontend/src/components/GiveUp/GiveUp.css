@@ -14,7 +14,8 @@
     outline:none;
     /* width:38% */
     min-width: auto;
-    width: auto;
+    height: 50%;
+    width: 50%;
  }
 
  @media screen and (max-width: 768px) {

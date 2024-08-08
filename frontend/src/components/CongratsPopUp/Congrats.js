@@ -38,6 +38,7 @@ export default function Congrats() {
       });
       localStorage.removeItem("gemini-detective-game-scenario");
       localStorage.removeItem("gemini-detective-game-convo");
+      localStorage.removeItem("gemini-detective-game-notes")
       window.location.reload();
     } catch (error) {
       console.error('Error sending message:', error);

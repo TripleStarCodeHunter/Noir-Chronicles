@@ -6,8 +6,24 @@ import GiveUp from '../GiveUp/GiveUp';
 
 
 const Sidebar = ({onQuery,gameSettings}) => {
-    const [notes, setNotes] = useState([]);
-    const [newNote, setNewNote] = useState('');
+  const [notes, setNotes] = useState(() => {
+    // Retrieve and parse "gemini-detective-game-convo" from localStorage
+    const convo = JSON.parse(localStorage.getItem("gemini-detective-game-convo")) || {};
+    console.log(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+    console.log(Object.keys(convo).length)
+    if(Object.keys(convo).length==0){
+      console.log(" in remove item")
+      localStorage.removeItem("gemini-detective-game-notes")
+    }
+    
+    // Retrieve and parse "gemini-detective-game-notes" from localStorage
+    const savedNotes = localStorage.getItem("gemini-detective-game-notes");
+    
+    // If "convo" is not empty and "savedNotes" exists, return parsed "savedNotes"
+    // Otherwise, return an empty array
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
+      const [newNote, setNewNote] = useState('');
     const [text, setText] = useState('');
     const [resp,setResp] = useState(null);
     const [showGiveUp,setShowGiveUp] = useState(false)
@@ -23,11 +39,15 @@ const Sidebar = ({onQuery,gameSettings}) => {
     useEffect(()=>{
       // const stored_history=localStorage.getItem("gemini-detective-game-scenario");
       // console.log(" heheheh ",stored_history,null,4)
-      console.log(" heheheh ",JSON.parse(localStorage.getItem("gemini-detective-game-scenario")))
+      console.log(" heheheh ",JSON.parse(localStorage.getItem("gemini-detective-game-notes")))
       if(localStorage.getItem("gemini-detective-game-scenario")){
         console.log(" entered here ")
         setResp(JSON.parse(localStorage.getItem("gemini-detective-game-scenario")))
       }
+      // if(notes!=[]){
+      //   setNotes(JSON.parse(localStorage.getItem("gemini-detective-game-notes")))
+      // }
+      console.log(notes)
     },[])
     // console.log(gameSettings)
     const sendStart = async () => {
@@ -53,6 +73,21 @@ const Sidebar = ({onQuery,gameSettings}) => {
         }
       };
 
+      // useEffect(()=>{
+      //   console.log(" hi ")
+      //   if(notes!=[]){
+      //     setNotes(JSON.parse(localStorage.getItem("gemini-detective-game-notes")))
+      //   }
+      //   console.log(notes)
+      // },[])
+
+      useEffect(()=>{
+        console.log(notes)
+        localStorage.setItem("gemini-detective-game-notes",JSON.stringify(notes))
+
+        console.log(JSON.parse(localStorage.getItem("gemini-detective-game-notes")))
+      },[notes])
+
       const sendRestart = async () => {
         try {
           console.log(" Message "+text)
@@ -64,11 +99,19 @@ const Sidebar = ({onQuery,gameSettings}) => {
           });
           localStorage.removeItem("gemini-detective-game-scenario")
           localStorage.removeItem("gemini-detective-game-convo")
+          localStorage.removeItem("gemini-detective-game-notes")
           window.location.reload();
           // const data = await res.json();
           sendStart()
         } catch (error) {
           console.error('Error sending message:', error);
+        }
+      };
+
+      const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault(); // Prevent new line in textarea
+          handleAddNote(event); // Call submit function
         }
       };
 
@@ -110,6 +153,7 @@ const Sidebar = ({onQuery,gameSettings}) => {
                         value={newNote}
                         onChange={(e) => setNewNote(e.target.value)}
                         placeholder=" Add a new note"
+                        onKeyDown={handleKeyDown}
                     />
                     <button onClick={handleAddNote}>Add</button>
                 </div>
