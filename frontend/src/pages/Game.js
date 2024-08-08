@@ -19,6 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState,useEffect } from "react";
 
 import GeminiIcon from'../assets/google-gemini-icon.webp'
+import Congrats from "../components/CongratsPopUp/Congrats";
 
 const Game = ()=>{
   const [open, setOpen] = React.useState(true);
@@ -37,6 +38,8 @@ const Game = ()=>{
   const [difficulty, setDifficulty] = useState('Easy');
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
+  const [availableActions, setAvailableActions] = useState([]); // New state for available actions
+
 
   
   const [chatHistory,setChatHistory] = useState([])
@@ -63,9 +66,15 @@ const Game = ()=>{
     setBlur("0px")
     setOpen(false)
   };
+
+  // useEffect(()=>{
+  //   console.log(availableActions)
+  // },[availableActions])
+
     return(
       
       <div className="initial" style={{filter:`blur(${blur})`}}>
+        {/* <Congrats/> */}
       { chatHistory?.length==0 && <Modal
           open={open}
           aria-labelledby="modal-modal-title"
@@ -137,11 +146,11 @@ const Game = ()=>{
         }
           <div style={{display:"flex", width:"100vw",position:"relative"}} className="App">
           <div style={{flexShrink: 0}}>
-            <Sidebar gameSettings={[story,difficulty,begin]} onQuery={setQuery}/>
+          <Sidebar gameSettings={[story, difficulty, begin]} onQuery={setQuery} availableActions={availableActions} />
           </div>
           <div style={{flexGrow: 1}}>
 
-          <Conversation query={query}/>
+          <Conversation query={query} onUpdateActions={setAvailableActions} />
             
           </div>
         </div>

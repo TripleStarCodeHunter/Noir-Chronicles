@@ -1,0 +1,30 @@
+.give-up{
+    /* background-color: rgba(0,0,0,0.2); */
+    width: 100vw;
+    height: 100vh;
+    position:relative;
+    z-index: 10;      
+    /* border: 20px solid #c0c0c0; */
+    /* filter:blur(6px) */
+ }
+
+
+
+ .give-up-box{
+    border:none;
+    background-color:#B7CFDC;
+    outline:none;
+    /* width:38% */
+    min-width: auto;
+    height: 50%;
+    width: 50%;
+    z-index: 4001;
+ }
+
+ @media screen and (max-width: 768px) {
+    .give-up-box {
+      width: 100% !important;
+      background-color: black;
+    }
+  }
+
