@@ -114,7 +114,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
             <p>{resp?.response}</p>
           ) : (
             <ContentLoader
-              speed={3} // Faster animation
+              speed={2} // Faster animation
               width="100%" // Adjust width if needed
               height="100%" // Adjust height if needed
               viewBox="0 0 400 50%"
