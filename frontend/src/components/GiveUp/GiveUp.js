@@ -22,7 +22,8 @@ const GiveUp = ({showGiveUp})=>{
     
     const sendRestart = async () => {
         try {
-          const res = await fetch('http://localhost:5000/restart', {
+          const backendUrl = process.env.REACT_APP_BACKEND_URL;
+          const res = await fetch(`${backendUrl}/restart`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -46,7 +47,8 @@ const GiveUp = ({showGiveUp})=>{
       const sendGiveUp = async () => {
     try {
       // console.log(" Message "+text)
-      const res = await fetch('http://localhost:5000/', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const res = await fetch(`${backendUrl}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

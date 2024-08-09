@@ -40,8 +40,9 @@ const Conversation = ({query,onUpdateActions}) => {
 
   const sendMessage = async () => {
     try {
-      console.log(" Message "+text)
-      const res = await fetch('http://localhost:5000/', {
+      // console.log(" Message "+text)
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const res = await fetch(`${backendUrl}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

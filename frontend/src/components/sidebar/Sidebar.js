@@ -39,7 +39,8 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
   const sendStart = async () => {
     if (gameSettings.length > 0) {
       try {
-        const res = await fetch('http://localhost:5000/', {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL;
+        const res = await fetch(`${backendUrl}/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -65,7 +66,8 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
 
   const sendRestart = async () => {
     try {
-      await fetch('http://localhost:5000/restart', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      await fetch(`${backendUrl}/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
