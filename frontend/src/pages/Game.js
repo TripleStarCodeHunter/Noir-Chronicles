@@ -84,6 +84,8 @@ const Game = ()=>{
           <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}}>
             <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
               <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Welcome</span> 
+              <hr style={{ color: "black", width: "70%", margin: "auto" }} />
+
               {/* <hr style={{ borderTop: "8px solid black",color:"black",borderColor:"black !important"}}/> */}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
