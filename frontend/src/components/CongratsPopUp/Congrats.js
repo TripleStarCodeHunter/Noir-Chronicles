@@ -34,12 +34,12 @@ export default function Congrats() {
   const sendRestart = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
-      const res = await fetch(`${backendUrl}/`, {
+      const res = await fetch(`${backendUrl}/restart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: "restart" }),
+        // body: JSON.stringify({ message: "restart" }),
       });
       localStorage.removeItem("gemini-detective-game-scenario");
       localStorage.removeItem("gemini-detective-game-convo");
