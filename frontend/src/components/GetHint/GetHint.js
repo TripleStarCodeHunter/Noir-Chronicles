@@ -18,9 +18,36 @@ const style = {
   };
 const GetHint = ({showHint,setShowHint,availableActions})=>{
 
+  const [resp,setResp] = useState('')
+
+
+  const sendHint = async () => {
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      const res = await fetch(`${backendUrl}/hint`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message : "#1ad57b3o0 get hint" }),
+      });
+
+      const data = await res.json();
+      console.log(data)
+      setResp(data);
+      
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
+
     const [getHint,setGetHint] = useState(showHint)
     useEffect(()=>{
         setGetHint(showHint)
+        if (showHint)
+        {
+          sendHint()
+        }
     },[showHint])
 
     useEffect(()=>{
@@ -55,9 +82,10 @@ const GetHint = ({showHint,setShowHint,availableActions})=>{
                   </Typography>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                   <div className="actions-list">
+                        {resp?.hint}
                         <h5>Available Actions</h5>
                         <ul>
-                        {availableActions.map((action, index) => (
+                        {resp?.available_actions?.map((action, index) => (
                             <li key={index} style={{ cursor: 'pointer' }}>
                             {action}
                             </li>
