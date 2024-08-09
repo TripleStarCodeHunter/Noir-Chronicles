@@ -111,7 +111,7 @@ def restart():
 
 
 @app.route("/hint", methods=['POST'])
-def index():
+def hint():
     if request.method == 'POST':
         data = request.get_json()
         
