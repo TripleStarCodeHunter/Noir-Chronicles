@@ -11,23 +11,26 @@ import { useState ,useEffect, useRef} from 'react';
 import Button from '@mui/joy/Button';
 import {Spinner} from 'react-bootstrap';
 import Confetti from 'react-confetti';
+import Congrats from '../CongratsPopUp/Congrats';
 
 const Conversation = ({query,onUpdateActions}) => {
   const [text, setText] = useState('');
   const [resp,setResp] = useState(null);
   const [selectedItem, setSelectedItem] = useState('Character Select');
-  // const [prompts, setPrompts] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showCongrats, setShowCongrats] = useState(false);
+
 
   const handleShowConfetti = () => {
     setShowConfetti(true);
     console.log("Showing confetti")
-    setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 5 seconds
+    // setTimeout(() => setShowConfetti(false), 5000); // Stop confetti after 5 seconds
   };
 
-
-  // const [prompts2,setPrompts2] = useState(new Map());
-
+  const handleShowCongrats = () => {
+    setShowCongrats(true);
+    console.log("Showing congrats")
+  };
   
   const [characterList,setCharacterList] = useState([])
   
@@ -55,6 +58,7 @@ const Conversation = ({query,onUpdateActions}) => {
       if (data.win==1)
       {
         handleShowConfetti()
+        handleShowCongrats()
       }
       onUpdateActions(data.available_actions); // Update available actions in parent
 
@@ -145,7 +149,7 @@ const Conversation = ({query,onUpdateActions}) => {
       handleSubmit(event); // Call submit function
     }
   };
-  const containerRef = useRef(null);
+  // const containerRef = useRef(null);
 
 
   const chatAreaRef = useRef(null);
@@ -159,6 +163,7 @@ const Conversation = ({query,onUpdateActions}) => {
 
   return (
     <>
+    {showCongrats && <Congrats/>}
     {showConfetti && (
       <Confetti style={{ margin: "auto", width: "100vw", height: "100vh" }} />
     )}

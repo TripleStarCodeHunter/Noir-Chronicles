@@ -1,18 +1,22 @@
 import * as React from 'react';
-import Backdrop from '@mui/material/Backdrop';
+// import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Detective from '../../assets/detective-silhoutte.png'
 
 const style = {
-  width: 400,
+  width: 600,
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
   outline: 'none',
-  backgroundColor: "pink"
+  backgroundColor: "#F5DF68",
+  // border:"2px solid black",
+  background: 'linear-gradient(135deg, #FFF5B7, #FFD700, #FFC300, #FFB300)',
+
 };
 
 export default function Congrats() {
@@ -47,11 +51,12 @@ export default function Congrats() {
   };
 
   return (
-    <Modal
+    <>
+    {open && <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      open={open}
-      onClose={handleClose}
+      open={true}
+      // onClose={handleClose}
       closeAfterTransition
     //   slots={{ backdrop: Backdrop }}
       slotProps={{
@@ -60,18 +65,31 @@ export default function Congrats() {
         },
       }}
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      BackdropProps={{
+        style: { backgroundColor: 'transparent' }, // Disable greyed-out background
+      }}
     >
       <Slide direction="up" in={open} mountOnEnter unmountOnExit>
-        <Box sx={style}>
-          <Typography id="transition-modal-title" variant="h6" component="h2">
-            <span style={{ fontSize: "20px",textAlign:"center",width:"100%" }}>CONGRATULATIONS !!!</span>
+        <Box sx={style} style={{paddingBottom:"1%"}}>
+          <Typography id="transition-modal-title" variant="h6" component="h2" style={{width:"100%"}}>
+            <div style={{ fontSize: "2rem",textAlign:"center",width:"100%"}}>🎉CONGRATULATIONS !!!🎉</div>
+            <hr style={{color:"black",width:"70%",margin:"auto"}} />
+
           </Typography>
-          <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            You beat the game
+          <div style={{height:"33%",width:"30%",borderRadius:"50%",padding:"4%",margin:"auto auto"}}>
+          <img src={Detective} width="100%" height="100%" style={{margin:"auto auto"}}/>
+          </div>
+          <Typography id="transition-modal-description" sx={{ mt: 2,textAlign:"center" }}>
+           
+          Case Closed! 🕵️‍♂️ You've cracked the case and unveiled the truth. Your keen instincts and sharp mind have made you the ultimate sleuth. 
+          Thanks for embarking on this detective journey!
           </Typography>
-          <Button onClick={sendRestart}>Restart</Button>
+          <Button onClick={sendRestart} style={{marginTop:"1%",float:"right",color:"#385E72"}}>Restart</Button>
         </Box>
       </Slide>
     </Modal>
+    }
+    </>
+
   );
 }
