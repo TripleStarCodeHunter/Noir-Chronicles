@@ -39,7 +39,7 @@ export default function Congrats() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: "restart" }),
+        // body: JSON.stringify({ message: "restart" }),
       });
       localStorage.removeItem("gemini-detective-game-scenario");
       localStorage.removeItem("gemini-detective-game-convo");
