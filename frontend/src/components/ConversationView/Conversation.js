@@ -62,7 +62,11 @@ const Conversation = ({query,onUpdateActions}) => {
       }
       onUpdateActions(data.available_actions); // Update available actions in parent
 
-
+      if(data.suspects!=characterList){
+        console.log(data.suspects)
+        console.log(characterList)
+        setCharacterList(data.suspects)
+      }
       // console.log(" hehehe ",onUpdateActions)
       setResp(data);
       
@@ -71,6 +75,7 @@ const Conversation = ({query,onUpdateActions}) => {
     }
   };
 
+  
   
 
   const handleSelect = (item) => {

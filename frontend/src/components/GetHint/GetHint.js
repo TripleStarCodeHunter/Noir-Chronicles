@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './GetHint.css'
 import { useEffect, useState } from 'react';
+import TextLoading from '../TextLoading/TextLoading';
 
 const style = {
     position: 'absolute',
@@ -62,63 +63,68 @@ const GetHint = ({showHint,setShowHint,availableActions})=>{
   }
 
     return(
-        <>
-        {getHint && 
-            <div className="give-up">
-              <Modal
-                open={getHint}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                onClose={handleClose}
-                BackdropProps={{
-                  style: { backgroundColor: 'transparent' }, // Disable greyed-out background
-                }}
+      <>
+      {getHint && (
+        <div className="give-up">
+          <Modal
+            open={getHint}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            onClose={handleClose}
+            BackdropProps={{
+              style: { backgroundColor: 'transparent' }, // Disable greyed-out background
+            }}
+          >
+            <Box sx={style} style={{ backgroundColor: "#B7CFDC" }} className="give-up-box">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+                style={{ textAlign: "center" }}
               >
-                <Box sx={style} style={{ backgroundColor: "#B7CFDC" }} className="give-up-box">
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    style={{ textAlign: "center" }}
-                  >
-                    <span style={{ fontSize: "2.8rem", width: "100%", textAlign: "center" }}>
-                      Hint
-                    </span>
-                    <hr style={{ color: "black", width: "70%", margin: "auto" }} />
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <span style={{ fontSize: "2.8rem", width: "100%", textAlign: "center" }}>
+                  Hint
+                </span>
+                <hr style={{ color: "black", width: "70%", margin: "auto" }} />
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {resp ? (
                   <div className="actions-list">
-                        {resp?.hint}
-                        <h5>Available Actions</h5>
-                        <ul>
-                        {resp?.available_actions?.map((action, index) => (
-                            <li key={index} style={{ cursor: 'pointer' }}>
-                            {action}
-                            </li>
-                        ))}
-                        </ul>
-                    </div>   
-                    <div style={{ width: "100%", marginTop: "5%" }}>
-                      <Button
-                        onClick={handleClose}
-                        color="primary"
-                        style={{
-                          height: "100%",
-                          borderRadius: "2px",
-                          backgroundColor: "#385E72",
-                          color: "white",
-                          float: "right",
-                        }}
-                      >
-                        OK
-                      </Button>
-                    </div>
-                  </Typography>
-                </Box>
-              </Modal>
-            </div>
-          }
-          </>
+                    {resp.hint}
+                    <h5>Available Actions</h5>
+                    <ul>
+                      {resp.available_actions?.map((action, index) => (
+                        <li key={index} style={{ cursor: 'pointer' }}>
+                          {action}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <TextLoading />
+                )}
+                <div style={{ width: "100%", marginTop: "5%" }}>
+                  <Button
+                    onClick={handleClose}
+                    color="primary"
+                    style={{
+                      height: "100%",
+                      borderRadius: "2px",
+                      backgroundColor: "#385E72",
+                      color: "white",
+                      float: "right",
+                    }}
+                  >
+                    OK
+                  </Button>
+                </div>
+              </Typography>
+            </Box>
+          </Modal>
+        </div>
+      )}
+    </>
+    
           
     );
 }
