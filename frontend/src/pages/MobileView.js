@@ -27,9 +27,10 @@ const MobileView = () => {
   const [open, setOpen] = React.useState(true);
   const [story,setStory] = useState('1');
   const [query,setQuery] = useState("");
-  const [difficulty, setDifficulty] = useState('Easy');
+  const [difficulty, setDifficulty] = useState('Medium');
   const [availableActions, setAvailableActions] = useState([]); // New state for available actions
 
+  
 
 
   useEffect(() => {
@@ -39,17 +40,20 @@ const MobileView = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-const style = {
+  const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    // bgcolor: 'background.paper',
     border: "none",
     boxShadow: 24,
     p: 4,
-    height:"auto"
+    height:"auto",
+    background: 'linear-gradient(135deg, #D2B48C,#4A4A4A)',
+    color:" #f5f5f5",
+    borderRadius:"20px"
+
   };
 
   const handleChange = (event) => {
@@ -90,12 +94,15 @@ const style = {
           aria-describedby="modal-modal-description"
 
         >
-          <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}} >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Welcome 
+          <Box sx={style} style={{border:"none",backgroundColor:"#B7CFDC",outline:"none"}} className="animated-background">
+            <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
+              <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Welcome</span> 
+              <hr style={{ color: "black", width: "70%", margin: "auto" }} />
+
+              {/* <hr style={{ borderTop: "8px solid black",color:"black",borderColor:"black !important"}}/> */}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Please choose your settings
+              Choose your preferences :
 
               {/* Radio Buttons */}
               <div style={{paddingLeft:"3%"}}>
@@ -107,9 +114,9 @@ const style = {
                 onChange={handleChange}
                 
                  >
-                <FormControlLabel value="1" control={<Radio style={{color:"#385E72"}}/>} label="Story 1" />
-                <FormControlLabel value="2" control={<Radio />} label="Story 2" />
-                <FormControlLabel value="3" control={<Radio />} label="Story 3" />
+                <FormControlLabel value="1" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Neo Victorian Murder" />
+                <FormControlLabel value="2" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Silent Witness" />
+                <FormControlLabel value="3" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Digital Divide" />
                 </RadioGroup>
               </div>
 
@@ -118,7 +125,7 @@ const style = {
               <div style={{display:"flex",justifyContent:"space-between" ,width:"100%",alignItems:"center",marginTop:"3%"}}>
 
               {/* Difficulty Dropdown */}
-                  <CDropdown className='character-select' style={{ height:"100% !important",borderRadius: "2px",backgroundColor:"#D9E4EC",marginTop:"0",marginLeft:"0"}} required>
+                  <CDropdown className='character-select' style={{ height:"100% !important",borderRadius: "2px",backgroundColor:"#D8C6A7",marginTop:"0",marginLeft:"0"}} required>
                     <CDropdownToggle color="black" className='dropdown-toggle' >
                       {difficulty}
                     </CDropdownToggle>
@@ -135,7 +142,7 @@ const style = {
                     </CDropdownMenu>
                   </CDropdown>
 
-                  <Button type="submit" color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#385E72",color:"white"}}>
+                  <Button type="submit" color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#6D6D6D",color:"white"}}>
                     Begin!
                   </Button>
                   
@@ -143,7 +150,10 @@ const style = {
                 </form>
                 <div style={{width:"100%",textAlign:"center",marginTop:"5%",marginBottom:"-3.8%"}}>
                   <img src={GeminiIcon} style={{width:"10%",height:"100%"}}/>
-                    &nbsp;&nbsp;Powered by Gemini
+                    &nbsp;&nbsp; 
+                    
+                    Powered by Gemini
+                    
                 </div>
             </Typography>
           </Box>

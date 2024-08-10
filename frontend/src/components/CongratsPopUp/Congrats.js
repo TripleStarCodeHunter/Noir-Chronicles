@@ -34,7 +34,7 @@ export default function Congrats() {
   const sendRestart = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
-      const res = await fetch(`${backendUrl}/`, {
+      const res = await fetch(`${backendUrl}/restart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

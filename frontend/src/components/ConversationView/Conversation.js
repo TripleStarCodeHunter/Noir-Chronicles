@@ -221,7 +221,7 @@ const Conversation = ({query,onUpdateActions}) => {
         ))}
       </div>
       <div className='user-area'>
-        <form className='frm' onSubmit={handleSubmit} style={{ height: "auto" }}>
+        <form className='frm' onSubmit={handleSubmit} >
           <TextareaAutosize
             placeholder={selectedItem === 'Character Select' ? "Please choose a character to talk to..." : "Enter your prompt here..."}
             value={text}
@@ -231,9 +231,13 @@ const Conversation = ({query,onUpdateActions}) => {
             disabled={selectedItem === 'Character Select'} // Disable if selectedItem is null
             onKeyDown={handleKeyDown}
           />
-          <Button type="submit" color="primary" className='prompt-submit'>
+          {/* <Button type="submit" color="primary" className='prompt-submit'>
             Submit
-          </Button>
+          </Button> */}
+          <button type="submit" color="primary" className='prompt-submit'>
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Ask
+          </button>
         </form>
       </div>
     </div>

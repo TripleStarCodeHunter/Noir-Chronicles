@@ -67,7 +67,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
   const sendRestart = async () => {
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
-      await fetch(`${backendUrl}/`, {
+      await fetch(`${backendUrl}/restart`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
