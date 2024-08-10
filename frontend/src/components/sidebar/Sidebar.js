@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRedo } from '@fortawesome/free-solid-svg-icons';
-import ContentLoader from 'react-content-loader';
 import './Sidebar.css';
 import GiveUp from '../GiveUp/GiveUp';
 import GetHint from '../GetHint/GetHint';
+import TextLoading from '../TextLoading/TextLoading';
 
 const Sidebar = ({onQuery,gameSettings,availableActions}) => {
   const [notes, setNotes] = useState(() => {
@@ -45,7 +45,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ message: "Start Game Difficulty: " + gameSettings[1] }),
+          body: JSON.stringify({ message: "Start Game Difficulty: " + gameSettings[1] + " Story : "+gameSettings[0]}),
         });
 
         const data = await res.json();
@@ -113,23 +113,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
           {resp ? (
             <p>{resp?.response}</p>
           ) : (
-            <ContentLoader
-              speed={2} // Faster animation
-              width="100%" // Adjust width if needed
-              height="100%" // Adjust height if needed
-              viewBox="0 0 400 50%"
-              backgroundColor="#b3b3b3" // Darker grayish background
-              foregroundColor="#999999" // Slightly more grayish foreground
-            >
-              <rect x="0" y="0" rx="5" ry="5" width="100%" height="10%" /> 
-              <rect x="0" y="18%" rx="5" ry="5" width="100%" height="10%" /> 
-              <rect x="0" y="36%" rx="5" ry="5" width="100%" height="10%" /> 
-              <rect x="0" y="54%" rx="5" ry="5" width="100%" height="10%" /> 
-              <rect x="0" y="72%" rx="5" ry="5" width="100%" height="10%" /> 
-              <rect x="0" y="90%" rx="5" ry="5" width="100%" height="10%" /> 
-
-
-            </ContentLoader>
+            <TextLoading/>
           )}
         </div>
         <div className="notes">

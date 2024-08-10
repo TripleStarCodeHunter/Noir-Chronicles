@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './GiveUp.css'
 import { useEffect, useState } from 'react';
+import TextLoading from '../TextLoading/TextLoading';
 
 const style = {
     position: 'absolute',
@@ -76,37 +77,50 @@ const GiveUp = ({showGiveUp})=>{
   }
 
     return(
-        <div className="give-up">
-            <Modal
-          open={showGiveUp}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+      <div className="give-up">
+      <Modal
+        open={showGiveUp}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} style={{ backgroundColor: '#B7CFDC' }} className="give-up-box">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            style={{ textAlign: 'center' }}
+          >
+            <span style={{ fontSize: '2.8rem', width: '100%', textAlign: 'center' }}>
+              Solution
+            </span>
+            <hr style={{ color: 'black', width: '70%', margin: 'auto' }} />
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {resp ? (
+              resp
+            ) : (
+              <TextLoading /> // Display loading component when resp is empty
+            )}
 
-        >
-          <Box sx={style} style={{backgroundColor:"#B7CFDC"}} className="give-up-box">
-            <Typography id="modal-modal-title" variant="h6" component="h2" style={{textAlign:"center"}}>
-              <span style={{fontSize:"2.8rem",width:"100%",textAlign:"center"}}>Solution</span> 
-              <hr style={{color:"black",width:"70%",margin:"auto"}} />
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {resp}
-              
-              
-
-              <div style={{width:"100%",marginTop:"5%"}}>
-
-
-                  <Button onClick={sendRestart} color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#385E72",color:"white",float:"right"}}>
-                        Restart
-                  </Button>
-                  
-                </div>
-                
-                
-            </Typography>
-          </Box>
-        </Modal>
-        </div>
+            <div style={{ width: '100%', marginTop: '5%' }}>
+              <Button
+                onClick={sendRestart}
+                color="primary"
+                style={{
+                  height: '100%',
+                  borderRadius: '2px',
+                  backgroundColor: '#385E72',
+                  color: 'white',
+                  float: 'right',
+                }}
+              >
+                Restart
+              </Button>
+            </div>
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
     );
 }
 
