@@ -14,7 +14,10 @@ const style = {
     border: "none",
     boxShadow: 24,
     p: 4,
-    height:"auto"
+    height:"auto",
+    background: 'linear-gradient(135deg, #B2B2B2, #6A6A6A)',
+    borderRadius:"20px",
+    color:"white"
   };
 const GiveUp = ({showGiveUp})=>{
 

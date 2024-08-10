@@ -14,7 +14,10 @@ const style = {
     border: "none",
     boxShadow: 24,
     p: 4,
-    height:"auto"
+    height:"auto",
+    background: 'linear-gradient(135deg, #B2B2B2, #6A6A6A)',
+    borderRadius:"20px",
+    color:"white"
   };
 const GetHint = ({showHint,setShowHint,availableActions})=>{
 
@@ -67,6 +70,9 @@ const GetHint = ({showHint,setShowHint,availableActions})=>{
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
                 onClose={handleClose}
+                BackdropProps={{
+                  style: { backgroundColor: 'transparent' }, // Disable greyed-out background
+                }}
               >
                 <Box sx={style} style={{ backgroundColor: "#B7CFDC" }} className="give-up-box">
                   <Typography
