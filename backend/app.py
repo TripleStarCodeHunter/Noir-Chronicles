@@ -257,7 +257,7 @@ def hint():
         
         message = data.get('message')
         print('Received message:', message)
-        response = chat_session.send_message(message)
+        response = chat_session.send_message(message)  
         y = (response.text)
         print(y)
         return y
