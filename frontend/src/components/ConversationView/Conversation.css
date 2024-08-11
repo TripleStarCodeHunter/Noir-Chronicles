@@ -1,4 +1,5 @@
 .chat-box{
+    background-image: ;
     background-color: #ededed;
     height: 100vh;
     width: 70%;
@@ -164,7 +165,7 @@
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: transparent; 
   }
    
   /* Handle */
