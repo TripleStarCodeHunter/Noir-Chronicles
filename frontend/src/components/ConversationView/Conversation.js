@@ -6,6 +6,8 @@ import {
   CDropdownItem
 } from '@coreui/react';
 import '@coreui/coreui/dist/css/coreui.min.css';
+import React from 'react';
+import backgroundImage from '../../assets/clab.png';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect, useRef} from 'react';
 import Button from '@mui/joy/Button';
@@ -172,7 +174,12 @@ const Conversation = ({query,onUpdateActions}) => {
     {showConfetti && (
       <Confetti style={{ margin: "auto", width: "100vw", height: "100vh" }} />
     )}
-    <div className='chat-box'>
+    <div className='chat-box' style={{ 
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',  // To make sure the image covers the entire area
+        backgroundRepeat: 'no-repeat', // To prevent repeating the image
+        backgroundPosition: 'left center',
+      }}>
       <CDropdown className='character-select' style={{ borderRadius: "1000px" }}>
         <CDropdownToggle color="white" className='dropdown-toggle'>
           {selectedItem}
