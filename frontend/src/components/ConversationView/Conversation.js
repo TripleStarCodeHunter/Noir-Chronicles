@@ -21,6 +21,7 @@ const Conversation = ({query,onUpdateActions}) => {
   const [selectedItem, setSelectedItem] = useState('Character Select');
   const [showConfetti, setShowConfetti] = useState(false);
   const [showCongrats, setShowCongrats] = useState(false);
+  const [img, setImg] = useState("");
 
 
   const handleShowConfetti = () => {
@@ -40,6 +41,13 @@ const Conversation = ({query,onUpdateActions}) => {
     console.log(" query ",query)
     if(query?.suspects){
     setCharacterList(query?.suspects)
+    try {
+      const imagePath = require(`../../assets/clab.png`); // Replace with dynamic path if needed
+      setImg(imagePath);
+      console.log("Image path set:", imagePath);
+    } catch (error) {
+      console.error("Error loading image:", error);
+    }
     console.log(JSON.stringify(characterList,null,4))}
   },[query])
 
@@ -175,10 +183,10 @@ const Conversation = ({query,onUpdateActions}) => {
       <Confetti style={{ margin: "auto", width: "100vw", height: "100vh" }} />
     )}
     <div className='chat-box' style={{ 
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${img})`,
         backgroundSize: 'cover',  // To make sure the image covers the entire area
         backgroundRepeat: 'no-repeat', // To prevent repeating the image
-        backgroundPosition: 'left center',
+        // backgroundPosition: 'left center',
       }}>
       <CDropdown className='character-select' style={{ borderRadius: "1000px" }}>
         <CDropdownToggle color="white" className='dropdown-toggle'>
