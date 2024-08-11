@@ -113,10 +113,10 @@ const Game = ()=>{
 
               <form onSubmit={handleSubmit} style={{height:"auto"}}>
 
-              <div style={{display:"flex",justifyContent:"space-between" ,width:"100%",alignItems:"center",marginTop:"3%"}}>
+              <div style={{height:"100%",display:"flex",justifyContent:"space-between" ,width:"100%",alignItems:"center",marginTop:"3%",verticalAlign:"center"}}>
 
               {/* Difficulty Dropdown */}
-                  <CDropdown className='character-select' style={{ height:"100% !important",borderRadius: "2px",backgroundColor:"#D8C6A7",marginTop:"0",marginLeft:"0"}} required>
+                  <CDropdown className='character-select' style={{height:"50px", borderRadius: "2px",backgroundColor:"#D8C6A7",marginTop:"0",marginLeft:"0"}} required>
                     <CDropdownToggle color="black" className='dropdown-toggle' >
                       {difficulty}
                     </CDropdownToggle>
@@ -133,9 +133,13 @@ const Game = ()=>{
                     </CDropdownMenu>
                   </CDropdown>
 
-                  <Button type="submit" color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#6D6D6D",color:"white"}}>
+                  {/* <Button type="submit" color="primary" style={{height:"100%",borderRadius:"2px",backgroundColor:"#6D6D6D",color:"white"}} className="begin-button">
                     Begin!
-                  </Button>
+                  </Button> */}
+
+                <div class="begin-button">
+                  <button class="begin-btn" type="submit" style={{height:"50px"}}><span></span><p data-start="good luck!" data-text="start!" data-title="new game"></p></button>
+                </div>
                   
                 </div>
                 </form>

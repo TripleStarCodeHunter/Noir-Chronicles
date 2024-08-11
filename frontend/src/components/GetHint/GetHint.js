@@ -104,7 +104,7 @@ const GetHint = ({showHint,setShowHint,availableActions})=>{
                   <TextLoading />
                 )}
                 <div style={{ width: "100%", marginTop: "5%" }}>
-                  <Button
+                  {/* <Button
                     onClick={handleClose}
                     color="primary"
                     style={{
@@ -116,7 +116,19 @@ const GetHint = ({showHint,setShowHint,availableActions})=>{
                     }}
                   >
                     OK
-                  </Button>
+                  </Button> */}
+
+              <button onClick={handleClose} style={{
+                      // height: "100%",
+                      borderRadius: "2px",
+                      // backgroundColor: "#385E72",
+                      // color: "white",
+                      float: "right",
+                    }} 
+                    class="get-hint-ok">
+                OK
+              </button>
+              
                 </div>
               </Typography>
             </Box>

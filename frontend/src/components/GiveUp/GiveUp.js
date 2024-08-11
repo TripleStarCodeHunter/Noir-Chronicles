@@ -103,7 +103,7 @@ const GiveUp = ({showGiveUp})=>{
             )}
 
             <div style={{ width: '100%', marginTop: '5%' }}>
-              <Button
+              {/* <Button
                 onClick={sendRestart}
                 color="primary"
                 style={{
@@ -115,7 +115,18 @@ const GiveUp = ({showGiveUp})=>{
                 }}
               >
                 Restart
-              </Button>
+              </Button> */}
+
+              <button onClick={sendRestart} style={{
+                      // height: "100%",
+                      borderRadius: "2px",
+                      // backgroundColor: "#385E72",
+                      // color: "white",
+                      float: "right",
+                    }} 
+                    class="get-hint-ok">
+                Restart
+              </button>
             </div>
           </Typography>
         </Box>
