@@ -42,7 +42,7 @@ const Conversation = ({query,onUpdateActions}) => {
     if(query?.suspects){
     setCharacterList(query?.suspects)
     try {
-      const imagePath = require(`../../assets/clab.png`); // Replace with dynamic path if needed
+      const imagePath = require(`../../assets/story2.png`); // Replace with dynamic path if needed
       setImg(imagePath);
       console.log("Image path set:", imagePath);
     } catch (error) {

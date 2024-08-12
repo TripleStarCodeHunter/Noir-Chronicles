@@ -11,7 +11,7 @@ from datetime import timedelta
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "https://noirchronicles.netlify.app"}})
 
 app.secret_key = 'billorani'
 app.permanent_session_lifetime = timedelta(days=5)  # Set session timeout
@@ -19,6 +19,8 @@ app.permanent_session_lifetime = timedelta(days=5)  # Set session timeout
 import os
 
 import google.generativeai as genai
+
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
 
 genai.configure(api_key="AIzaSyAiU1xIWXdK3lLlgdCDIRIjISkVMdEoWpU")
 
@@ -67,47 +69,47 @@ on receiving #1ad57b3o0 get hint as prompt, return a json object with hint as ke
 The stories are as follows:
 
 Story 1 :
-## The Neo-Victorian Murder
+The Neo-Victorian Murder
 
-*Central Mystery:* The prestigious Professor Alistair Crowley, a pioneer in chrono-mechanics (the study of time manipulation), has been found murdered in his opulent laboratory located in the prestigious Aether District of Neo-Victoria.  
+Central Mystery: The prestigious Professor Alistair Crowley, a pioneer in chrono-mechanics (the study of time manipulation), has been found murdered in his opulent laboratory located in the prestigious Aether District of Neo-Victoria.  
 
-*World Setting:*
+World Setting:
 
-* Neo-Victoria: A sprawling metropolis inspired by Victorian England, but infused with fantastical steampunk technology. Think airships, clockwork automatons, and gaslight lamps alongside horse-drawn carriages and grand architecture.  
-* Society: Neo-Victoria is divided by class. The affluent elite reside in the Aether District, powered by aetherium, a mysterious energy source that fuels technology.  The underbelly, known as the Cogs, houses the working class who toil in factories fueled by coal. Tensions simmer between the classes. 
-* Historical Event: The Great Clockwork Uprising (50 years ago) saw clockwork automatons used as laborers rebel against their human masters. Though quelled, the event left a lasting scar on society, with lingering mistrust towards automatons.
+ Neo-Victoria: A sprawling metropolis inspired by Victorian England, but infused with fantastical steampunk technology. Think airships, clockwork automatons, and gaslight lamps alongside horse-drawn carriages and grand architecture.  
+ Society: Neo-Victoria is divided by class. The affluent elite reside in the Aether District, powered by aetherium, a mysterious energy source that fuels technology.  The underbelly, known as the Cogs, houses the working class who toil in factories fueled by coal. Tensions simmer between the classes. 
+ Historical Event: The Great Clockwork Uprising (50 years ago) saw clockwork automatons used as laborers rebel against their human masters. Though quelled, the event left a lasting scar on society, with lingering mistrust towards automatons.
 
-*Characters:*
+Characters:
 
-* *The Victim:* Professor Alistair Crowley (50s) - A brilliant but arrogant scientist obsessed with time travel. He had recently announced a breakthrough that could supposedly send messages to the past.  
-* *Suspects:*
-    * *Lady Lavinia Cavendish (40s):* Professor Crowley's estranged wife, known for her lavish lifestyle and gambling debts. Motive: Potential inheritance and spite. 
-    * *Dr. Thaddeus Kensington (30s):* A brilliant but envious colleague of Professor Crowley. Motive: Professional rivalry and a desire for Crowley's research.  
-    * *Inspector Bartholomew Gearsmith (60s):* A grizzled veteran detective with a distrust of new technology. Motive: Skeptical of Professor Crowley's work and frustrated by his lack of cooperation. 
-    * *Fidget (unknown age):* A mischievous automaton assistant who worked in Professor Crowley's lab. Motive: Unknown, but some automatons still harbor resentment towards humans. 
+ The Victim: Professor Alistair Crowley (50s) - A brilliant but arrogant scientist obsessed with time travel. He had recently announced a breakthrough that could supposedly send messages to the past.  
+ Suspects:
+     Lady Lavinia Cavendish (40s): Professor Crowley's estranged wife, known for her lavish lifestyle and gambling debts. Motive: Potential inheritance and spite. 
+     Dr. Thaddeus Kensington (30s): A brilliant but envious colleague of Professor Crowley. Motive: Professional rivalry and a desire for Crowley's research.  
+     Inspector Bartholomew Gearsmith (60s): A grizzled veteran detective with a distrust of new technology. Motive: Skeptical of Professor Crowley's work and frustrated by his lack of cooperation. 
+     Fidget (unknown age): A mischievous automaton assistant who worked in Professor Crowley's lab. Motive: Unknown, but some automatons still harbor resentment towards humans. 
 
-*Story Layers:*
+Story Layers:
 
-* *Professor Crowley's Secret Project:* Gemini can uncover clues hinting at Professor Crowley's true research - not time travel, but a way to manipulate causality. This could be a dangerous invention with unforeseen consequences.  
-* *Hidden Relationships:*  Dr. Kensington might be secretly working for a shadowy organization interested in Professor Crowley's research. 
-* *The Automaton Question:* Was Fidget truly capable of murder, or was it programmed by someone? 
-* *Clockwork Uprising Connection:* Gemini can unearth whispers of a hidden message Professor Crowley received, potentially linked to the Uprising and a plot for revenge.  
+ Professor Crowley's Secret Project: Gemini can uncover clues hinting at Professor Crowley's true research - not time travel, but a way to manipulate causality. This could be a dangerous invention with unforeseen consequences.  
+ Hidden Relationships:  Dr. Kensington might be secretly working for a shadowy organization interested in Professor Crowley's research. 
+ The Automaton Question: Was Fidget truly capable of murder, or was it programmed by someone? 
+ Clockwork Uprising Connection: Gemini can unearth whispers of a hidden message Professor Crowley received, potentially linked to the Uprising and a plot for revenge.  
 
-*User Interaction:*
+User Interaction:
 
 The user can interact with the world through text commands:
 
-* *Interrogations:* The user can choose which suspect to question and delve into their past, motives, and alibis. 
-* *Location Exploration:*  The user can explore different locations in Neo-Victoria, such as Professor Crowley's lab, Lady Cavendish's mansion, Dr. Kensington's workshop, and the Cogs district. Each location can offer clues and hidden secrets.  
-* *Inventory Management:* The user can collect and analyze clues found during interrogations and exploration, such as witness testimonies, lab notes, and suspicious objects. 
+ Interrogations: The user can choose which suspect to question and delve into their past, motives, and alibis. 
+ Location Exploration:  The user can explore different locations in Neo-Victoria, such as Professor Crowley's lab, Lady Cavendish's mansion, Dr. Kensington's workshop, and the Cogs district. Each location can offer clues and hidden secrets.  
+ Inventory Management: The user can collect and analyze clues found during interrogations and exploration, such as witness testimonies, lab notes, and suspicious objects. 
 
-*Ending Possibilities:*
+Ending Possibilities:
 
 Based on the user's choices, the game can have multiple endings:
 
-* *The Obvious Culprit:* The user uncovers enough evidence to identify the most likely suspect. 
-* *The Twist:*  Gemini reveals a hidden plot or connection, leading to a shocking revelation about the true murderer. 
-* *The Cliffhanger:*  The user solves the immediate murder, but is left with unanswered questions about Professor Crowley's secret research and its potential dangers.
+ The Obvious Culprit: The user uncovers enough evidence to identify the most likely suspect. 
+ The Twist:  Gemini reveals a hidden plot or connection, leading to a shocking revelation about the true murderer. 
+ The Cliffhanger:  The user solves the immediate murder, but is left with unanswered questions about Professor Crowley's secret research and its potential dangers.
 
 In the scenario, include that Inspector Gearsmith is from the police daprtmant and there to help you out. Also explain the initial characters such as lady lavinia, thaddeius
 
@@ -115,28 +117,28 @@ In the scenario, include that Inspector Gearsmith is from the police daprtmant a
 Story 2 : 
 ## The Silent Witness
 
-*Central Mystery:* A renowned environmental activist, Dr. Anya Petrova, is found dead in her remote cabin in the heart of the Borealis Forest. The cause of death is initially unknown, but the scene suggests a struggle.
+Central Mystery: A renowned environmental activist, Dr. Anya Petrova, is found dead in her remote cabin in the heart of the Borealis Forest. The cause of death is initially unknown, but the scene suggests a struggle.
 
-*World Setting:* A near-future where climate change has accelerated, leading to the creation of vast, protected wilderness areas. Corporations and environmental activists are locked in a constant battle over resource exploitation.
+World Setting: A near-future where climate change has accelerated, leading to the creation of vast, protected wilderness areas. Corporations and environmental activists are locked in a constant battle over resource exploitation.
 
-*Characters:*
+Characters:
 
-* *Dr. Anya Petrova:* A passionate and outspoken environmentalist, known for her relentless campaigns against corporate greed.
-* *Elias Thorne:* A young, ambitious journalist investigating the disappearance of endangered species in the Borealis Forest.
-* *Viktor Markov:* A powerful CEO of a mining corporation with interests in the region.
-* *The Old Shaman:* A mysterious elder of the indigenous people living in harmony with the forest.
+ Dr. Anya Petrova: A passionate and outspoken environmentalist, known for her relentless campaigns against corporate greed.
+ Elias Thorne: A young, ambitious journalist investigating the disappearance of endangered species in the Borealis Forest.
+ Viktor Markov: A powerful CEO of a mining corporation with interests in the region.
+ The Old Shaman: A mysterious elder of the indigenous people living in harmony with the forest.
 
-*Story Layers:*
+Story Layers:
 
-* *Environmental Conspiracy:* Dr. Petrova was on the brink of uncovering a massive corporate conspiracy to exploit the forest's hidden resources.
-* *Supernatural Elements:* The Borealis Forest is rumored to harbor ancient, mythical creatures. Could one of these be involved in the murder?
-* *Government Involvement:* A secret government agency is interested in the forest for its unique properties, and they might be willing to eliminate anyone who gets in their way.
+ Environmental Conspiracy: Dr. Petrova was on the brink of uncovering a massive corporate conspiracy to exploit the forest's hidden resources.
+ Supernatural Elements: The Borealis Forest is rumored to harbor ancient, mythical creatures. Could one of these be involved in the murder?
+ Government Involvement: A secret government agency is interested in the forest for its unique properties, and they might be willing to eliminate anyone who gets in their way.
 
-*Possible Twists:*
+Possible Twists:
 
-* Dr. Petrova faked her death to escape a dangerous situation.
-* The killer is a creature mutated by environmental pollution.
-* The real target was Elias Thorne, and Dr. Petrova was killed by mistake.
+ Dr. Petrova faked her death to escape a dangerous situation.
+ The killer is a creature mutated by environmental pollution.
+ The real target was Elias Thorne, and Dr. Petrova was killed by mistake.
 
 Story 3
 ## The Digital Divide
@@ -182,23 +184,6 @@ chat_session = model.start_chat(
 )
 
 
-# @app.route("/", methods=['POST'])
-# def index():
-#     if request.method == 'POST':
-#         data = request.get_json()
-#         message = data.get('message')
-#         print('Received message:', message)
-
-#         def generate_chunks():
-#             response = model.generate_content_stream(message)
-#             for chunk in response:
-#                 yield f"data: {chunk.text}\n\n"
-
-#         # Use EventSource to stream response chunks
-#         return EventSource(generate_chunks())
-#     else:
-#         return("No msg received")
-
 
 @app.route("/", methods=['POST'])
 def index():
@@ -219,7 +204,10 @@ def index():
         response = ""
         
         while (not response):
-          response = chat_session.send_message(message)
+          response = chat_session.send_message([message],safety_settings={
+          HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+          HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+          })  
         session['gemini detective game data'] = jsonpickle.encode(chat_session.history)
         # print("pushing",jsonpickle.decode(session.get('gemini detective game data')))
         y = (response.text)
@@ -235,20 +223,13 @@ def restart():
   session.clear()
   print("Cookies cleared")
   # for message in chat_session.history:
-  #   print(f"**{message.role}**: {message.parts[0].text}")
+  #   print(f"{message.role}: {message.parts[0].text}")
   chat_session = model.start_chat(
   history=[
   ]
   )
   return ("restart")
     
-# @app.route('/send')
-# def send_message(message):
-#     response = model.generate_content("start")
-#     print("Message sent",message)
-#     y = (response.text)
-#     return(jsonify(y))
-
 
 @app.route("/hint", methods=['POST'])
 def hint():
@@ -257,8 +238,9 @@ def hint():
         
         message = data.get('message')
         print('Received message:', message)
-        response = chat_session.send_message(message)  
+        response = chat_session.send_message(message)
         y = (response.text)
+        y.headers['Access-Control-Allow-Origin'] = 'https://noirchronicles.netlify.app'
         print(y)
         return y
     else:
