@@ -114,9 +114,9 @@ const MobileView = () => {
                 onChange={handleChange}
                 
                  >
-                <FormControlLabel value="1" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Neo Victorian Murder" />
-                <FormControlLabel value="2" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Silent Witness" />
-                <FormControlLabel value="3" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Digital Divide" />
+                <FormControlLabel value="The Neo Victorian Murder" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Neo Victorian Murder" />
+                <FormControlLabel value="The Silent Witness" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Silent Witness" />
+                <FormControlLabel value="The Digital Divide" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Digital Divide" />
                 </RadioGroup>
               </div>
 
