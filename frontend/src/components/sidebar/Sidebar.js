@@ -61,6 +61,9 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
   useEffect(() => {
     if (gameSettings[2]) {
       sendStart();
+
+
+      localStorage.setItem("gemini-detective-game-story",gameSettings[0])
     }
   }, [gameSettings[2]]);
 
@@ -76,6 +79,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
       localStorage.removeItem("gemini-detective-game-scenario");
       localStorage.removeItem("gemini-detective-game-convo");
       localStorage.removeItem("gemini-detective-game-notes");
+      localStorage.removeItem("gemini-detective-game-story")
       window.location.reload();
     } catch (error) {
       console.error('Error sending message:', error);
