@@ -25,7 +25,7 @@ const MobileView = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [color, setColor] = useState('#000000');
   const [open, setOpen] = React.useState(true);
-  const [story,setStory] = useState('1');
+  const [story,setStory] = useState('Neo-Victorian-Murder');
   const [query,setQuery] = useState("");
   const [difficulty, setDifficulty] = useState('Medium');
   const [availableActions, setAvailableActions] = useState([]); // New state for available actions
@@ -110,13 +110,13 @@ const MobileView = () => {
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
                 value={story}
-                defaultValue="1"
+                defaultValue="Neo-Victorian-Murder"
                 onChange={handleChange}
                 
                  >
-                <FormControlLabel value="The Neo Victorian Murder" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Neo Victorian Murder" />
-                <FormControlLabel value="The Silent Witness" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Silent Witness" />
-                <FormControlLabel value="The Digital Divide" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Digital Divide" />
+                <FormControlLabel value="Neo-Victorian-Murder" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Neo Victorian Murder" />
+                <FormControlLabel value="The-Silent-Witness" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Silent Witness" />
+                <FormControlLabel value="The-Vanishing-Artist" control={<Radio style={{color:"#4A4A4A"}}/>} label="The Vanishing Artist" />
                 </RadioGroup>
               </div>
 

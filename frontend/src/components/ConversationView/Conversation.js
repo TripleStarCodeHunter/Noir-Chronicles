@@ -43,7 +43,7 @@ const Conversation = ({query,onUpdateActions}) => {
     setCharacterList(query?.suspects)
     try {
       const story = localStorage.getItem("gemini-detective-game-story")
-      
+      console.log(story)
       const imagePath = require(`../../assets/${story}.png`); // Replace with dynamic path if needed
       setImg(imagePath);
       // console.log("Image path set:", imagePath);

@@ -62,7 +62,7 @@ const Sidebar = ({onQuery,gameSettings,availableActions}) => {
     if (gameSettings[2]) {
       sendStart();
 
-
+      console.log(gameSettings[0])
       localStorage.setItem("gemini-detective-game-story",gameSettings[0])
     }
   }, [gameSettings[2]]);
