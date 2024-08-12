@@ -7,7 +7,7 @@ import {
 } from '@coreui/react';
 import '@coreui/coreui/dist/css/coreui.min.css';
 import React from 'react';
-import backgroundImage from '../../assets/clab.png';
+// import backgroundImage from '../../assets/clab.png';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useState ,useEffect, useRef} from 'react';
 import Button from '@mui/joy/Button';
@@ -38,17 +38,20 @@ const Conversation = ({query,onUpdateActions}) => {
   const [characterList,setCharacterList] = useState([])
   
   useEffect(()=>{
-    console.log(" query ",query)
+    // console.log(" query ",query)
     if(query?.suspects){
     setCharacterList(query?.suspects)
     try {
-      const imagePath = require(`../../assets/story2.png`); // Replace with dynamic path if needed
+      const story = localStorage.getItem("gemini-detective-game-story")
+      
+      const imagePath = require(`../../assets/${story}.png`); // Replace with dynamic path if needed
       setImg(imagePath);
-      console.log("Image path set:", imagePath);
+      // console.log("Image path set:", imagePath);
     } catch (error) {
       console.error("Error loading image:", error);
     }
-    console.log(JSON.stringify(characterList,null,4))}
+    // console.log(JSON.stringify(characterList,null,4))
+  }
   },[query])
 
   const sendMessage = async () => {
@@ -97,10 +100,16 @@ const Conversation = ({query,onUpdateActions}) => {
     if(JSON.parse(localStorage.getItem("gemini-detective-game-scenario"))!=null){
       console.log("Entered here")
       setCharacterDict(JSON.parse(localStorage.getItem("gemini-detective-game-convo")))
+
+      const story= localStorage.getItem("gemini-detective-game-story")
+      
+      const imagePath = require(`../../assets/${story}.png`); // Replace with dynamic path if needed
+      setImg(imagePath);
       // const character_list = JSON.parse(localStorage.getItem("gemini-detective-game-scenario")).suspects;
       
       setCharacterList(JSON.parse(localStorage.getItem("gemini-detective-game-scenario")).suspects)
     }
+
   },[])
 
   const [characterDict, setCharacterDict] = useState(() => {
