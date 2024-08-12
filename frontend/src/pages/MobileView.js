@@ -27,7 +27,7 @@ const MobileView = () => {
   const [open, setOpen] = React.useState(true);
   const [story,setStory] = useState('Neo-Victorian-Murder');
   const [query,setQuery] = useState("");
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [difficulty, setDifficulty] = useState('Easy');
   const [availableActions, setAvailableActions] = useState([]); // New state for available actions
 
   

@@ -39,7 +39,7 @@ const Game = ()=>{
 
   };
   const [blur,setBlur]=useState("8px")
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [difficulty, setDifficulty] = useState('Easy');
   const [story,setStory] = useState('Neo-Victorian-Murder');
   const [query,setQuery] = useState("");
   const [availableActions, setAvailableActions] = useState([]); // New state for available actions
